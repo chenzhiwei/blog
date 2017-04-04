@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>IP地址及相关知识 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/09/18/ip-address-and-related/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">IP地址及相关知识</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-09-18</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>IP是Internet Protocol的缩写，是为了让计算机之间互相识别并连接而设计的协议。而我们通常所说的IP其实指的是IP地址，是计算机在网络上唯一的身份标识。IP地址被为为“保留地址”和“网络地址”，保留的包括专用网络地址、链路本地地址、环回地址和以0或255结尾的地址，网络地址就是除以上这些之外的IP地址。平时常说的内网IP其实是指保留地址中的专用网络地址，而公网（外网）IP就是除保留地址以外的IP地址。</p>
+<a id="more"></a>
+<h2 id="什么是内网IP"><a href="#什么是内网IP" class="headerlink" title="什么是内网IP"></a>什么是内网IP</h2><p>一些小型企业或者学校，通常都是申请一个固定的IP地址，然后通过IP共享（IP Sharing），使用整个公司或学校的机器都能够访问互联网。而这些企业或学校的机器使用的IP地址就是内网IP，内网IP是在规划IPv4协议时，考虑到IP地址资源可能不足，就专门为内部网设计私有IP地址（或称之为保留地址），一般常用内网IP地址都是这种形式的：10.X.X.X、172.16.X.X-172.31.X.X、192.168.X.X等。需要注意的是，内网的计算机可向Internet上的其他计算机发送连接请求，但Internet上其他的计算机无法向内网的计算机发送连接请求。我们平时可能在内网机器上搭建过网站或者FTP服务器，而在外网是不能访问该网站和FTP服务器的，原因就在于此。</p>
+<h2 id="什么是公网（外网）IP"><a href="#什么是公网（外网）IP" class="headerlink" title="什么是公网（外网）IP"></a>什么是公网（外网）IP</h2><p>公网IP就是除了保留IP地址以外的IP地址，可以与Internet上的其他计算机随意互相访问。我们通常所说的IP地址，其实就是指的公网IP。互联网上的每台计算机都有一个独立的IP地址，该IP地址唯一确定互联网上的一台计算机。这里的IP地址就是指的公网IP地址。</p>
+<h2 id="怎样理解互联网上的每台计算机都有一个唯一的IP地址"><a href="#怎样理解互联网上的每台计算机都有一个唯一的IP地址" class="headerlink" title="怎样理解互联网上的每台计算机都有一个唯一的IP地址"></a>怎样理解互联网上的每台计算机都有一个唯一的IP地址</h2><p>其实，互联网上的计算机是通过“公网IP＋内网IP”来唯一确定的，就像很多大楼都有201房间一样，房间号可能一样，但是大楼肯定是唯一的。公网IP地址和内网IP地址也是同样，不同企业或学校的机器可能有相同的内网IP地址，但是他们的公网IP地址肯定不同。那么这些企业或学校的计算机是怎样IP地址共享的呢？这就需要使用NAT（Network Address Translation,网络地址转换）功能。当内部计算机要连接互联网时，首先需要通过NAT技术，将内部计算机数据包中有关IP地址的设置都设成NAT主机的公共IP地址，然后再传送到Internet，虽然内部计算机使用的是私有IP地址，但在连接Internet时，就可以通过NAT主机的NAT技术，将内网IP地址修改为公网IP地址，如此一来，内网计算机就可以向Internet请求数据了。</p>
+<h2 id="什么是NAT（网络地址转换）"><a href="#什么是NAT（网络地址转换）" class="headerlink" title="什么是NAT（网络地址转换）"></a>什么是NAT（网络地址转换）</h2><p>网络地址转换(NAT,Network Address Translation)属接入广域网(WAN)技术，是一种将私有(保留)地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。原因很简单，NAT不仅完美地解决了IP地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。</p>
+<p>虽然NAT可以借助于某些代理服务器来实现，但考虑到运算成本和网络性能，很多时候都是在路由器上来实现的。</p>
+<p>随着接入Internet的计算机数量的不断猛增，IP地址资源也就愈加显得捉襟见肘。事实上，除了中国教育和科研计算机网(CERNET)外，一般用户几乎申请不到整段的C类IP地址。在其他ISP那里，即使是拥有几百台计算机的大型局域网用户，当他们申请IP地址时，所分配的地址也不过只有几个或十几个IP地址。显然，这样少的IP地址根本无法满足网络用户的需求，于是也就产生了NAT技术。</p>
+<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码（subnet mask），通常我们都写为NETMASK。说起子网掩码就不得不提一下IP地址，IP地址其实有两部分组成，分别是网络地址和主机地址，而子网掩码是来标识网络地址位数和确定两个或多个IP地址是否在同一网段（即它们的网络地址是否相同）。如果两个IP地址的子网掩码相同，并且主机地址也相同，那么这两个IP就属于同一子网网段。子网掩码与IP地址做完and运算之后，该IP地址的网络地址不变而主机地址会全部被置为0。</p>
+<h3 id="按子网数来计算子网掩码"><a href="#按子网数来计算子网掩码" class="headerlink" title="按子网数来计算子网掩码"></a>按子网数来计算子网掩码</h3><p>1.将子网数转化为二进制表示<br>2.假设该二进制数的位数为N<br>3.取得该IP地址类的子网掩码并将其主机地址的前N位置1即可等到子网掩码</p>
+<p><em>例：将202.102.154.0/24划分为5个子网，求子网掩码</em></p>
+<p>1.将5转化为二进制形式为101<br>2.该二进制的位数为3位<br>3.该IP段为C类IP，其子网掩码为255.255.255.0，将主机地址前3位置1之后为255.255.255.224<br>4.225.225.225.224即为要求的子网掩码</p>
+<h3 id="按主机数来计算子网掩码"><a href="#按主机数来计算子网掩码" class="headerlink" title="按主机数来计算子网掩码"></a>按主机数来计算子网掩码</h3><p>1.将主机数转化为二进制<br>2.假设该二进制的位数为N<br>3.将255.255.255.255的二进制数后N位全部置0即为子网掩码</p>
+<p><em>例：将202.102.154.0/24划分为若干个子网，每个子网80台主机</em></p>
+<p>1.求得80的二进制数为1010000<br>2.该二进制位数为7<br>3.将255.255.255.255的后N位全置为0得11111111.11111111.11111111.10000000<br>4.以上二进制数为255.255.255.128，也就是所求的子网掩码</p>
+<h2 id="什么是网关"><a href="#什么是网关" class="headerlink" title="什么是网关"></a>什么是网关</h2><p>网关即网络关卡（guān qiǎ），两个不网络里的主机需要通过网关来进行通信。每个网络都有一个网关，网关也是IP地址，并且这个IP地址在具有路由功能的设备上。主机A与主机B通信时，主机A首先会把请求发给A的网关，A的网关通过路由来获取主机B的网关，B的网关再把请求发给主机B，进而完成了主机A与主机B之间的通信。</p>
+<p>网关的地址通常都是主机地址为1的那个IP地址，当然你也可以用所属网络中的任何一台主机做网关。</p>
+<p>注：本文所说的IP地址为IPv4地址，更多关于IPv4地址的信息请移步<a href="http://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="external">维基百科</a>。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+          <a class="category" href="/tags/ip/">ip</a>
+        
+          <a class="category" href="/tags/nat/">nat</a>
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/09/17/recent-things-about-work/" title="Next Post: 最近的一些琐事"> &laquo; 最近的一些琐事</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/10/14/install-lamp-on-ubuntu/" title="Next Post: LAMP安装配置小记">LAMP安装配置小记 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+    <section>
+  <h1>Comments</h1>
+  <div id="disqus_thread"></div>
+<script>
+  var disqus_shortname = 'chenzhiwei';
+  var disqus_config = function () {
+    this.page.url = 'https://blog.chenzhiwei.cn/2010/09/18/ip-address-and-related/';
+    this.page.identifier = 'https://blog.chenzhiwei.cn/2010/09/18/ip-address-and-related/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

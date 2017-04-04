@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>Shell I/O重定向 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2011/08/29/shell-io-redirection/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">Shell I/O重定向</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2011-08-29</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>Unuix/Linux系统有三个文件是默认被打开着的，它们的分别是stdin(标准输入文件，键盘)，stdout（标准输出文件，屏幕）和stderr（标准错误文件，屏幕）。这些文件和其他打开的文件都可以被重定向。I/O重定向简单的说就是用一个脚本来捕获一个文件、命令、程序、脚本甚至是代码块的输出，然后将该输出写入到另一个文件、命令、程序或脚本。</p>
+<a id="more"></a>
+<p>每个打开的文件都被赋予一个文件描述符。0,1,2分别是标准输入、标准输出、标准错误的文件描述符。</p>
+<p>1.标准输出 &gt; (COMMAND_OUTPUT &gt;)</p>
+<p>重定向标准输出到一个文件，如果这个文件不存在则创建，存在则覆盖。</p>
+<pre><code>ls -lR &gt; dir-tree.list
+# 将当前目录的目录树写入文件dir-tree.list
+
+: &gt; filename
+# 删除filename里的所有内容（即将filename置空）。如果文件不存在则创建一个空文件（与touch filename命令效果相同）。
+
+&gt; filename
+# 与上条命令意思相同，但是该命令在某些shell中不可用。
+</code></pre><p>2.标准输出 &gt;&gt; (COMMAND_OUTPUT &gt;&gt;)</p>
+<p>重定标准输出到一个文件，如果该文件不存在则创建，存在则追加到该文件末尾。</p>
+<p>只对单行重定向命令起作用（即只对命令所在的行起作用）</p>
+<pre><code>1 &gt;&gt; filename
+# 重定向并追加标准输出到filename
+
+2 &gt;&gt; filename
+# 重定向前追加标准错误输出到filename
+
+&amp; &gt; filename
+# 重定向标准输出和标准错误输出到filename，该命令可在Bash 4下使用。
+
+M &gt; N
+# “M” 是一个文件描述符，默认为1；”N”是一个文件名。意思是将M的内容重定向到N
+
+M&gt;&amp;N
+# “M”是一个文件描述符，默认为1；”N”是另一个文件描述符。意思是将文件描述符M重定向到N，即所有M指向的文件输出都会发给N所指向的文件。
+
+2&gt;&amp;1
+# 将标准错误输出重定向到标准输出，一般用法如下：
+&gt;&gt; filename 2&gt;&amp;1
+# 意思是将标准错误输出重定向到标准输出，再将标准输出重定向到文件filename
+
+&gt;&amp;j
+# 等价于 1&gt;&amp;j ，即将标准输出定向到j所指向的文件
+
+0&lt;filename 或 &lt;filename
+# 以文件filename内容为标准输入。
+# grep search-word &lt; filename
+
+[j]&lt;&gt;filename
+# 以读写方式打开filename，并且将j作为文件描述符赋值给filename，如果j没有被指定，默认为0，即标准输入。
+</code></pre><p>下面的例子会让你更清楚理解其含义</p>
+<pre><code>echo “1234567890″ &gt; file  # 将字符串写入file
+exec 3&lt;&gt;file    # 打开file并且将其文件描述符设置成3
+read -n 4 &lt;&amp;3   # 仅读取4个字符
+echo -n . &gt;&amp;3   # 写入一个英文句号
+exec 3&gt;&amp;-   # 关于文件描述符3
+cat file    # 结果会是：1234.567890
+
+    |
+    # 管道，用来定向命令的，与”&gt;”相似，但是更实用。不细说了。
+
+    ls -yz &gt;&gt; command.log 2&gt;&amp;1
+    # 捕获非法选项yz的标准错误输出及标准输出，并写入command.log文件。
+
+    ls -yz 2&gt;&amp;1 &gt;&gt; command.log
+    # 输出错误信息，但是不写入文件command.log。这一行命令的意思是将标准输出写入command.log，而标准错误输出则定向到标准输出。虽然这条命令和并一条命令一样，都是将标准错误输出定向到标准输出，但是顺序不一样，所以意义也不一样。
+</code></pre><p>3.关闭文件描述符</p>
+<pre><code>n&lt;&amp;-
+# 关闭输入文件描述符n
+
+0&lt;&amp;-,&lt;&amp;-
+# 关闭标准输入。
+
+n&gt;&amp;-
+# 关闭标准输出文件描述符n.
+
+1&gt;&amp;-,&gt;&amp;-
+# 关闭标准标准输出
+</code></pre><p>子进程继承打开的文件描述符，这就是pipe工作的原理，要阻止一个文件描述符被继承，那么请关闭它。</p>
+<pre><code># 仅重定向标准错误输出到管道
+
+exec 3&gt;&amp;1 # 保存当前标准输出的值
+ls -l 2&gt;&amp;1 &gt;&amp;3 3&gt;&amp;- | grep bad 3&gt;&amp;- # 为grep关闭文件描述符3（但并不是’ls’命令）
+exec 3&gt;&amp;- # 关闭文件描述符3
+</code></pre><p>注：这是ABS Guide第20章的内容，我在上周六翻译出来的。</p>
+<p>英文原文地址：<a href="http://tldp.org/LDP/abs/html/io-redirection.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/io-redirection.html</a></p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2011/07/13/one-apache-hosts-two-site-with-different-port/" title="Next Post: 一个apache为两个不同端口的网站提供服务"> &laquo; 一个apache为两个不同端口的网站提供服务</a>
+        
+        
+          <a class="basic-alignment right" href="/2011/10/01/how-to-use-gpg/" title="Next Post: 最近的一些思考">最近的一些思考 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>Linux内核体系结构 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/12/01/linux-kernel-architecture/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">Linux内核体系结构</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-12-01</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>Linux内核的主要用途就是为了与计算机硬件进行交互，实现对硬件部件的编程控制和接口操作，调度对硬件资源的访问，并为计算机上用户程序提供一个高级的执行环境和对硬件的虚拟接口。</p>
+<a id="more"></a>
+<h2 id="Linux内核模式"><a href="#Linux内核模式" class="headerlink" title="Linux内核模式"></a>Linux内核模式</h2><p>操作系统内核的结构模式主要可分为整体式的单内核模式和层次式的微内核模式。而Linux内核使用的则是单内核模式，其内核代码结构紧凑、执行速度快，但是层次性不强。</p>
+<p>单内核模式的系统所提供的服务流程为：应用程序使用指定的参数值执行系统调用指令（int x80），使用CPU从用户态（User Mode）切换到核心态（Kernel Mode），然后操作系统根据具体的参数值调用服务程序，而这些服务程序则根据需要再调用底层的一些支持函数以完成特定的功能。在完成了应用程序所要求的服务后，操作系统切换到用户态，返回到应用程序中继续执行后面的命令。概要地讲，单内核模式的内核可以粗略地分为三个层次：调用服务的主程序层、执行系统调用的服务层和支持系统调用的底层函数。</p>
+<h2 id="Linux内核的模块"><a href="#Linux内核的模块" class="headerlink" title="Linux内核的模块"></a>Linux内核的模块</h2><p>Linux内核主要由5个模块构成，它们分别是：进程调度模块、内存管理模块、文件系统模块、进程间通信模块和网络接口模块。进程调度模块用来负责控制进程对CPU资源的使用，所采取的调度策略是各进程能够公开合理地访问CPU，同时保证内核及时地执行硬件操作。内存管理模块用于确保所有进程能够安全地共享机器主内存区，同时，内存管理模块还支持虚拟内存管理方式，使得Linux支持进程使用比实际内存空间更多的内存容量。文件系统模块用于支持对外部设备的驱动和存储。虚拟文件系统模块通过向所有的外部存储设备提供一个通用的文件接口，隐藏了各种硬件设备的不同细节。从而提供并支持与其他操作系统兼容的多种文件系统格式。进程间通信模块子系统用于支持多种进程间的信息交换方式。内核接口模块提供对多种网络通信标准的访问并支持许多网络硬件。</p>
+<p><img src="http://farm6.static.flickr.com/5248/5222725373_3ab556a42a_z.jpg" alt="内核模块结构"></p>
+<h2 id="Linux内核进程控制"><a href="#Linux内核进程控制" class="headerlink" title="Linux内核进程控制"></a>Linux内核进程控制</h2><p>程序是一个可执行的文件，而进程（process）是一个执行中的程序实例。在Linux操作系统上同时可以执行多个进程。内核程序使用进程标识号（process ID,pid）来标识每个进程。进程由可执行的指令代码、数据和堆栈区组成。进程中的代码和数据部分分别对应一个执行文件中的代码段、数据段。每个进程只能执行自己的代码和访问自己的数据及堆栈区。进程之间相互通信需要通过系统调用来进行。</p>
+<p>Linux系统中，一个进程可以在内核态（Kernel Mode）或用户态（UserMode）下执行，因此，linux内核栈和用户栈是分开的。用户栈用于进程在用户态下临时保存调用函数的参数、局部变量等数据。内核栈则含有内核程序执行函数调用时的信息。</p>
+<p><img src="http://farm5.static.flickr.com/4154/5222725379_d0d6dea072_z.jpg" alt="进程状态"></p>
+<p>当进程正在被CPU执行时，被称为处于执行状态（running）。当进程正在等待系统中的资源而处于等待状态时，则称其处于睡眠等待状态。在Linux系统中，可分为可中断的和不可中断的等待状态。当系统资源已经可用时，进程就被唤醒而进入准备运行状态，该状态称为就绪状态。当进程已经停止运行，但其父进程还没有询问其状态时，则称该进程处于僵死状态。当进程被终止时，称其处于停止状态。</p>
+<p>只有当进程从“内核运行态”转移到“睡眠状态”时，内核才会进行进程切换操作。在内核态下运行的进程不能被其他进程抢占，而且一个进程不能改变另一个进程的状态。为了避免进程切换时造成内核数据错误，内核在执行临界区代码时会禁止一切中断。</p>
+<h2 id="Linux内核对内存的使用方法"><a href="#Linux内核对内存的使用方法" class="headerlink" title="Linux内核对内存的使用方法"></a>Linux内核对内存的使用方法</h2><p>为了有效地使用系统的物理内存，内存被划分成几个功能区域</p>
+<p><img src="http://farm6.static.flickr.com/5206/5222725381_b7ce070fbb_z.jpg" alt="内存功能分布图"></p>
+<p>其中，linux内核程序占据物理内存的开始部分，接下来是用供硬盘或软盘等块设备使用的高速缓冲区部分。当一个进程需要读取块设备中的数据时，系统会首先将数据读到高速缓冲区中；当有数据需要写到块设备上去时，系统也是先将数据放到调整缓冲区中，然后由块设备驱动程序写到设备上。最后部分是供所有程序可以随时申请使用的主内存部分。内核程序在使用主内存区时，也同样要首先向内核的内存管理模块提出申请，在申请成功后方能使用。对于含有RAM虚拟盘的系统，主内存区头部还要划去一部分，供虚拟盘存放数据。</p>
+<p>注：节选自《linux内核完全注释》，有改动。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+          <a class="category" href="/tags/linux/">linux</a>
+        
+          <a class="category" href="/tags/kernel/">kernel</a>
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/11/30/change-my-blog-host-space/" title="Next Post: 博客搬家至新VPS"> &laquo; 博客搬家至新VPS</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/12/03/makefile-in-linux-kernel/" title="Next Post: Linux内核代码中的Makefile文件">Linux内核代码中的Makefile文件 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+    <section>
+  <h1>Comments</h1>
+  <div id="disqus_thread"></div>
+<script>
+  var disqus_shortname = 'chenzhiwei';
+  var disqus_config = function () {
+    this.page.url = 'https://blog.chenzhiwei.cn/2010/12/01/linux-kernel-architecture/';
+    this.page.identifier = 'https://blog.chenzhiwei.cn/2010/12/01/linux-kernel-architecture/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

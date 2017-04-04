@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>几种磁盘调度算法的描述 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2009/12/08/description-of-several-disk-scheduling/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">几种磁盘调度算法的描述</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2009-12-08</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>磁盘是高速、大容量、旋转型和可直接存取的存储设备。它作为计算机系统的辅助存储器，担负着繁重的输入输出工作，在现代计算机系统中往往同时会有若干个磁盘输入输出要求。操作系统可以采用一种策略，尽可能按最佳次序执行访问磁盘的请求，这就是下面所说的磁盘调度。</p>
+<a id="more"></a>
+<h2 id="磁盘调度主要思想"><a href="#磁盘调度主要思想" class="headerlink" title="磁盘调度主要思想"></a>磁盘调度主要思想</h2><p>设备的动态分配算法与进程调度相似，也是基于一定的分配策略的。常用的分配策略有先请求先分配、优先级高者先分配等策略。在多道程序系统中，低效率通常是由于磁盘类旋转设备使用不当造成的。操作系统中，对磁盘的访问要求来自多方面，常常需要排队。这时，对众多的访问要求按一定的次序响应，会直接影响磁盘的工作效率，进而影响系统的性能。访问磁盘的时间因子由3部分构成，它们是查找（查找磁道）时间、等待（旋转等待扇区）时间和数据传输时间，其中查找时间是决定因素。因此，磁盘调度算法先考虑优化查找策略，需要时再优化旋转等待策略。</p>
+<p>平均寻道长度（L）为所有磁道所需移动距离之和除以总的所需访问的磁道数（N），即：L=（M1+M2+…+Mi+…+MN）/N， 其中Mi为所需访问的磁道号所需移动的磁道数。</p>
+<p>启动磁盘执行输入输出操作时，要把移动臂移动到指定的柱面，再等待指定扇区的旋转到磁头位置下，然后让指定的磁头进行读写，完成信息传送。因此，执行一次输入输出所花的时间有：</p>
+<ul>
+<li>寻找时间——磁头在移动臂带动下移动到指定柱面所花的时间。</li>
+<li>延迟时间——指定扇区旋转到磁头下所需的时间。</li>
+<li>传送时间——由磁头进程读写完成信息传送的时间。</li>
+</ul>
+<p>其中传送信息所花的时间，是在硬件设计就固定的。而寻找时间和延迟时间是与信息在磁盘上的位置有关。</p>
+<p>为了减少移动臂进行移动花费的时间，每个文件的信息不是按盘面上的磁道顺序存放满一个盘面后，再放到下一个盘面上。而是按柱面存放，同一柱面上的各磁道被放满信息后，再放到下一个柱面上。所以各磁盘的编号按柱面顺序（从0号柱面开始），每个柱面按磁道顺序，每个磁道又按扇区顺序进行排序。</p>
+<h2 id="磁盘调度算法描述"><a href="#磁盘调度算法描述" class="headerlink" title="磁盘调度算法描述"></a>磁盘调度算法描述</h2><h3 id="1-先来先服务算法（FCFS）"><a href="#1-先来先服务算法（FCFS）" class="headerlink" title="1.先来先服务算法（FCFS）"></a>1.先来先服务算法（FCFS）</h3><p>先来先服务（FCFS）调度:按先来后到次序服务，未作优化。</p>
+<p>最简单的移臂调度算法是“先来先服务”调度算法，这个算法实际上不考虑访问者要求访问的物理位置，而只是考虑访问者提出访问请求的先后次序。例如，如果现在读写磁头正在50号柱面上执行输出操作，而等待访问者依次要访问的柱面为130、199、32、159、15、148、61、99，那么，当50号柱面上的操作结束后，移动臂将按请求的先后次序先移到130号柱面，最后到达99号柱面。</p>
+<p>采用先来先服务算法决定等待访问者执行输入输出操作的次序时，移动臂来回地移动。先来先服务算法花费的寻找时间较长，所以执行输入输出操作的总时间也很长。</p>
+<h3 id="2-短寻道时间优先算法（SSTF）"><a href="#2-短寻道时间优先算法（SSTF）" class="headerlink" title="2.短寻道时间优先算法（SSTF）"></a>2.短寻道时间优先算法（SSTF）</h3><p>最短寻找时间优先调度算法总是从等待访问者中挑选寻找时间最短的那个请求先执行的，而不管访问者到来的先后次序。现在仍利用同一个例子来讨论，现在当50 号柱面的操作结束后，应该先处理61号柱面的请求，然后到达32号柱面执行操作，随后处理15号柱面请求，后继操作的次序应该是99、130、148、 159、199。</p>
+<p>采用最短寻找时间优先算法决定等待访问者执行操作的次序时，读写磁头总共移动了200多个柱面的距离，与先来先服务、算法比较，大幅度地减少了寻找时间，因而缩短了为各访问者请求服务的平均时间，也就提高了系统效率。</p>
+<p>但最短查找时间优先（SSTF）调度，FCFS会引起读写头在盘面上的大范围移动，SSTF查找距离磁头最短（也就是查找时间最短）的请求作为下一次服务的对象。SSTF查找模式有高度局部化的倾向，会推迟一些请求的服务，甚至引起无限拖延（又称饥饿）。</p>
+<h3 id="3-扫描算法（SCAN）"><a href="#3-扫描算法（SCAN）" class="headerlink" title="3.扫描算法（SCAN）"></a>3.扫描算法（SCAN）</h3><p>SCAN算法又称电梯调度算法。SCAN算法是磁头前进方向上的最短查找时间优先算法，它排除了磁头在盘面局部位置上的往复移动，SCAN算法在很大程度上消除了SSTF算法的不公平性，但仍有利于对中间磁道的请求。</p>
+<p>“电梯调度”算法是从移动臂当前位置开始沿着臂的移动方向去选择离当前移动臂最近的那个柱访问者，如果沿臂的移动方向无请求访问时，就改变臂的移动方向再选择。这好比乘电梯，如果电梯已向上运动到4层时，依次有3位乘客陈生、伍生、张生在等候乘电梯。他们的要求是：陈生在2层等待去10层；伍生在5层等待去底层；张生在8层等待15层。由于电梯目前运动方向是向上，所以电梯的形成是先把乘客张生从8层带到15层，然后电梯换成下行方向，把乘客伍生从5层带到底层，电梯最后再调换方向，把乘客陈生从2层送到10层。</p>
+<p>我们仍用前述的同一例子来讨论采用“电梯调度”算法的情况。由于磁盘移动臂的初始方向有两个，而该算法是与移动臂方向有关，所以分成两种情况来讨论。</p>
+<p><strong>1).移动臂由里向外移动</strong></p>
+<p>开始时在50号柱面执行操作的读写磁头的移动臂方向是由里向外，趋向32号柱面的位置，因此，当访问50号柱面的操作结束后，沿臂移动方向最近的柱面是 32号柱面。所以应先为32号柱面的访问者服务，然后是为15号柱面的访问者服务。之后，由于在向外移方向已无访问等待者，故改变移动臂的方向，由外向里依次为各访问者服务。在这种情况下为等待访问者服务的次序是61、99、130、148、159、199。</p>
+<p><strong>2).移动臂由外向里移动</strong></p>
+<p>开始时，正在50号柱面执行操作的读写磁头的移动臂是由外向里（即向柱面号增大的内圈方向）趋向61号柱面的位置，因此，当访问50号柱面的操作结束后，沿臂移动方向最近的柱面是61号柱面。所以，应先为61号柱面服务，然后按移动臂由外向里移动的方向，依次为99、130、148、159、199柱面的访问者服务。当201号柱面的操作结束后，向里移动的方向已经无访问等待者，所以改变移动臂的前进方向，由里向外依次为32、15柱面的访问者服务。</p>
+<p>“电梯调度”与“最短寻找时间优先”都是要尽量减少移动臂时所花的时间。所不同的是：“最短寻找时间优先”不考虑臂的移动方向，总是选择离当前读写磁头最近的那个柱面，这种选择可能导致移动臂来回改变移动方向；“电梯调度”是沿着臂的移动方向去选择离当前读写词头最近的哪个柱面的访问者，仅当沿移动臂的前进移动方向无访问等待者时，才改变移动臂的前进方向。由于移动臂改变方向是机械动作，速度相对较慢，所以，电梯调度算法是一种简单、使用且高效的调度算法。</p>
+<p>但是，“电梯调度”算法在实现时，不仅要记住读写磁头的当前位置，还必须记住移动臂的当前前进方向</p>
+<h3 id="4-循环扫描算法（CSCAN）"><a href="#4-循环扫描算法（CSCAN）" class="headerlink" title="4.循环扫描算法（CSCAN）"></a>4.循环扫描算法（CSCAN）</h3><p>单项扫描调度算法的基本思想是，不考虑访问者等待的先后次序，总是从0号柱面开始向里道扫描，按照各自所要访问的柱面位置的次序去选择访问者。在移动臂到达最后一个柱面后，立即快速返回到0号柱面，返回时不为任何的访问者等待服务。在返回到0号柱面后，再次进行扫描。</p>
+<p>由于该例中已假定读写的当前位置在50号柱面，所以，指示了从50号柱面继续向里扫描，依次为61、99、130、148、159、199各柱面的访问者服务，此时移动臂已经是最内的柱面，于是立即返回到0号柱面，重新扫描，依次为15、32号柱面的访问者服务。</p>
+<p>除了“先来先服务”调度算法外，其余三种调度算法都是根据欲访问的柱面位置来继续调度的。在调度过程中可能有新的请求访问者加入。在这些新的请求访问者加入时，如果读写已经超过了它们所要访问的柱面位置，则只能在以后的调度中被选择执行。</p>
+<p>在多道程序设计系统中，在等待访问磁盘的若干访问者请求中，可能要求访问的柱面号相同，但在同一柱面上的不同磁道，或访问同一柱面中同一磁道上的不同扇区。所以，在进行移动调度时，在按照某种短法把移动臂定位到某个柱面后，应该在等待访问这个柱面的各个访问者的输入输出操作都完成之后，再改变移动臂的位置。</p>
+<h3 id="5-NStepSCAN和FSCAN调度算法"><a href="#5-NStepSCAN和FSCAN调度算法" class="headerlink" title="5.NStepSCAN和FSCAN调度算法"></a>5.NStepSCAN和FSCAN调度算法</h3><p><strong>1).NStepSCAN算法</strong></p>
+<p>在SSTF、SCAN及CSCAN几种调度算法中，都可能会出现磁臂停留在某处不动的情况，例如，有一个或几个进程地某一磁道有较高的访问频率，即这个(些)进程反复请求对某一磁道的I/O操作，从而垄断了整个磁盘设备。我们把这一现象称为“磁臂粘着”(Armstickiness)。在高密度磁盘上容易出现此情况。N步SCAN算法依次处理这些子队列。而每处理一个队列时又是按SCAN算法，对一个队列处理完后，再处理其他队列。当正在处理某子队列时，如果又出现新的磁盘I/O请求，便将新请求进程放入其他队列，这样就可避免出现粘着现象。当N值取得很大时，会使N步扫描法的性能接近于SCAN算法的性能；当N＝1时，N步SCAN算法便蜕化为FCSF算法。</p>
+<p><strong>2).FSCAN算法</strong></p>
+<p>FSCAN算法实质上是N步SCAN算法的简化，即FSCAN只将磁盘请求队列分成两个子队列。一个是由当前所有请求磁盘I/O的进程形成的队列，由磁盘调度按SCAN算法进行处理。在扫描期间，将新出现的所有请求磁盘I/O的进程，放入另一个等待处理的请求队列。这样，所有的新请求都将被推迟到下一次扫描时处理。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1.《计算机操作系统》</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+          <a class="category" href="/tags/disk/">disk</a>
+        
+          <a class="category" href="/tags/os/">os</a>
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2009/12/05/the-cheater/" title="Next Post: 前几天在家上网遇到了个骗子"> &laquo; 前几天在家上网遇到了个骗子</a>
+        
+        
+          <a class="basic-alignment right" href="/2009/12/12/sunshine-flower/" title="Next Post: 《阳光像花一样绽放》观后感">《阳光像花一样绽放》观后感 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+    <section>
+  <h1>Comments</h1>
+  <div id="disqus_thread"></div>
+<script>
+  var disqus_shortname = 'chenzhiwei';
+  var disqus_config = function () {
+    this.page.url = 'https://blog.chenzhiwei.cn/2009/12/08/description-of-several-disk-scheduling/';
+    this.page.identifier = 'https://blog.chenzhiwei.cn/2009/12/08/description-of-several-disk-scheduling/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

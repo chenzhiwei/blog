@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>Linux内核代码中的Makefile文件 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/12/03/makefile-in-linux-kernel/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">Linux内核代码中的Makefile文件</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-12-03</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>Makefile文件是make工具程序的信息文件，使用make时需要Makefile文件，Makefile文件定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作。</p>
+<a id="more"></a>
+<h2 id="Makefile文件简介"><a href="#Makefile文件简介" class="headerlink" title="Makefile文件简介"></a>Makefile文件简介</h2><p>Makefile文件是make工具程序的配置文件。make工具程序的主要用途是能自动地决定一个含有很多源程序文件的大型程序中哪个文件需要被重新编译。Makefile的使用比较复杂，这里只作简要介绍。</p>
+<p>为了使用make程序，用户就需要makefile文件来告诉make要做些什么工作。通常，makefile文件会告诉make如何编译和连接一个文件。当明确指出时，makefile文件还可以告诉make运行各位命令（如，作为清理操作而删除某些文件）。</p>
+<p>make的执行过程分为两个不同阶段。在第一阶段，它读取所在的makefile文件以及包含的makefile文件等，记录所在的变更及其值、隐式的或 显式的规则，并构造出所有目标对象及其先决条件的一幅全景图。在第二阶段期间，make就使用这些内部结构来确定哪个目标对象需要被重建，并且使用相应的 规则来操作。</p>
+<p>当make重新编译程序时，每个修改过的C语言代码文件必须被重新编译。如果一个头文件被修改过了，那么包含该头文件的文件也必须重新编译以保证生成的目标文件是最近的。Makefile文件有很多规则，这里就不做过多介绍。</p>
+<h2 id="Makefile文件功能"><a href="#Makefile文件功能" class="headerlink" title="Makefile文件功能"></a>Makefile文件功能</h2><p>Makefile文件相当于程序编译过程中的批处理文件。是工具程序make运行时的输入数据文件。只要含有Makefile的当前目录中键入make命令，它就会依据Makefile文件中的设置对源程序或目标代码文件进行编译、链接或进行安装等活动。</p>
+<p>make工具程序有自动地确定一个大程序系统中的哪些程序文件需要被重新编译，并发出命令对这些程序文件进行编译。在使用make之前，需要编写 Makefile信息文件，该文件描述了整个程序包中各程序之间的关系，并针对每个需要更新的文件给出具体的控制命令。通常，执行程序根据其目标文件进行 更新的，而这些上档文件则是由编译程序创建的。一旦编写好一个合适的Makefile文件，那么在你每次修改过程序系统中的某些源代码文件后，执行 make命令就能进行所有必要的重新编译工作。make程序是使用Makefile数据文件和代码文件的最后修改时间（last- modification time）来确定哪些文件需要进行更新，对于每一个需要更新的文件它会根据Makefile中的信息发出相应的命令。在Makefile文件中，开头为 “#”的行是注释行。</p>
+<h2 id="Linux内核源码中的Makefile文件"><a href="#Linux内核源码中的Makefile文件" class="headerlink" title="Linux内核源码中的Makefile文件"></a>Linux内核源码中的Makefile文件</h2><p><img src="http://farm6.static.flickr.com/5008/5229953483_1df1a4050b_z.jpg" alt="linux"></p>
+<p>Linux内核源码中的Makefile文件的主要功能是指示make程序最终使用独立编译连接成的tools/目录中的build执行程序将所有内核编 译代码连接和合并成一个可运行的内核映像文件image。具体是对boot/bootsect.s、boot/setup.s使用8086汇编器进行编 译，分别生成各自的执行模块。再对源代码中的其他所有程序使用GNU的编译器gcc/gas进行编译并连接成模块system，再用build工具将这三 块组合成一个内核映像文件image。</p>
+<p><img src="http://farm6.static.flickr.com/5164/5230546336_09eb9ecd8d_z.jpg" alt="linux1"></p>
+<p>注：节选自《Linux内核完全注释》，有改动。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/12/01/linux-kernel-architecture/" title="Next Post: Linux内核体系结构"> &laquo; Linux内核体系结构</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/12/07/chrome-web-store-is-now-launched/" title="Next Post: Chrome Web Store正式上线">Chrome Web Store正式上线 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

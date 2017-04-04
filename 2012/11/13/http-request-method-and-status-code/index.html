@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>HTTP的请求方法和响应状态码 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2012/11/13/http-request-method-and-status-code/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">HTTP的请求方法和响应状态码</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2012-11-13</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>HTTP是HyperText Transport Protocol的缩写，意思是超文本传输协议，是互联网上使用最广泛的协议。去年做毕业设计时记录过一些关于HTTP协议的内容，现在写在这个博客里。</p>
+<a id="more"></a>
+<h2 id="HTTP协议的请求方法"><a href="#HTTP协议的请求方法" class="headerlink" title="HTTP协议的请求方法"></a>HTTP协议的请求方法</h2><p>HTTP协议的请求方法有GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT。</p>
+<p>GET方法意为获取Request-URI标识的所有信息，Request-URI可以简单的理解为浏览器地址栏中域名后面的那部分内容。</p>
+<p>HEAD方法与GET方法非常相似，只获取由Request-URI所标识的资源的响应消息报头。</p>
+<p>POST方法是在Request-URI所标识的资源后附加新的数据。</p>
+<p>PUT方法是请求服务器存储一个资源，并用Request-URI作为其标识。</p>
+<p>DELETE方法是请求服务器删除Request-URI所标识的资源。</p>
+<p>TRACE方法是请求服务器回送收到的请求信息，主要用于测试或诊断。</p>
+<p>CONNECT方法是保留方法，将来使用。</p>
+<p>注：HTTP/1.0只有三个请求方法，即GET、HEAD、POST。其他几个方法是HTTP/1.1新加上去的。</p>
+<p>HTTP/1.0的请求方法文档：<a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#Method" target="_blank" rel="external">http://www.w3.org/Protocols/HTTP/1.0/spec.html#Method</a><br>HTTP/1.1的请求方法文档：<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1" target="_blank" rel="external">http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1</a></p>
+<h2 id="WebDAV协议的请求方法"><a href="#WebDAV协议的请求方法" class="headerlink" title="WebDAV协议的请求方法"></a>WebDAV协议的请求方法</h2><p>WebDAV是Web Distributed Authoring and Versioning的缩写，可以认为是HTTP协议的扩展，WebDAV将HTTP从一个只读的协议变成了一个可以读写的协议。</p>
+<p>WebDAV的方法比较多，有PROPFIND、PROPPATCH、MKCOL、COPY、MOVE、LOCK、UNLOCK等方法。具体解释这里就不多说了，可以参考WebDAV的文档：<a href="http://www.webdav.org/specs/rfc4918.html" target="_blank" rel="external">http://www.webdav.org/specs/rfc4918.html</a></p>
+<h2 id="HTTP协议的状态码"><a href="#HTTP协议的状态码" class="headerlink" title="HTTP协议的状态码"></a>HTTP协议的状态码</h2><h3 id="Information-1xx"><a href="#Information-1xx" class="headerlink" title="Information 1xx"></a>Information 1xx</h3><p>临时响应，表示临时响应并需要请求者继续执行操作的状态代码。</p>
+<p><strong>100 Continue</strong><br>继续，表示请求者应当继续提出请求，服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。</p>
+<p><strong>101 Switching Protocols</strong><br>切换协议，表示请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
+<h3 id="Successful-2xx"><a href="#Successful-2xx" class="headerlink" title="Successful 2xx"></a>Successful 2xx</h3><p>成功，表示客户端的请求被成功接收、理解并接受了。</p>
+<p><strong>200 OK</strong><br>成功，表示服务器已成功处理了请求。通常，这表示服务器提供了请求的网页。</p>
+<p><strong>201 Created</strong><br>已创建，表示请求成功并且服务器创建了新的资源。</p>
+<p><strong>202 Accepted</strong><br>已接收，表示服务器已接受请求，但尚未处理。</p>
+<p><strong>203 Non-Authoritative Information</strong><br>非授权信息，表示服务器已成功处理了请求，但返回的信息可能来自另一来源。</p>
+<p><strong>204 No Content</strong><br>无内容，表示服务器成功处理了请求，但没有返回任何内容。</p>
+<p><strong>205 Reset Content</strong><br>重置内容，表示服务器成功处理了请求，但没有返回任何内容。</p>
+<p><strong>206 Partial Content</strong><br>部分内容，表示服务器成功处理了部分GET请求。</p>
+<h3 id="Redirection-3xx"><a href="#Redirection-3xx" class="headerlink" title="Redirection 3xx"></a>Redirection 3xx</h3><p>重定向，表示要完成请求，需要进一步操作。通常，这些状态代码用来重定向。</p>
+<p><strong>300 Multiple Choices</strong><br>多种选择，表示针对请求，服务器可执行多种操作。服务器可根据请求者(user agent)选择一项操作，或提供操作列表供请求者选择。</p>
+<p><strong>301 Moved Permanently</strong><br>永久移动，表示请求的网页已永久移动到新位置。服务器返回此响应（对GET或HEAD请求的响应）时，会自动将请求者转到新位置。</p>
+<p><strong>302 Found</strong><br>临时移动，表示服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<p><strong>303 See Other</strong><br>查看其他位置，表示请求者应当对不同的位置使用单独的GET请求来检索响应时，服务器返回此代码。</p>
+<p><strong>304 Not Modified</strong><br>未修改，表示自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。</p>
+<p><strong>305 Use Proxy</strong><br>使用代理，表示请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。</p>
+<p><strong>306 (Unused)</strong><br>未使用的状态码，留给以后的版本使用。</p>
+<p><strong>307 Temporary Redirect</strong><br>临时重定向，表示服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<h3 id="Client-Error-4xx"><a href="#Client-Error-4xx" class="headerlink" title="Client Error 4xx"></a>Client Error 4xx</h3><p>4xx系列状态码表示客户端请求可能出错，妨碍了服务器的处理。</p>
+<p><strong>400 Bad Request</strong><br>错误请求，表示服务器不理解请求的语法。</p>
+<p><strong>401 Unauthorized</strong><br>未授权，表示请求要求身份验证。对于需要登录的网页，服务器可能返回此响应。</p>
+<p><strong>402 Payment Required</strong><br>需要支付了，具体的不清楚。</p>
+<p><strong>403 Forbidden</strong><br>禁止，表示服务器拒绝请求。</p>
+<p><strong>404 Not Found</strong><br>未找到，表示服务器找不到请求的网页。</p>
+<p><strong>405 Method Not Allowed</strong><br>方法禁用，表示禁用请求中指定的方法。</p>
+<p><strong>406 Not Acceptable</strong><br>不接受，表示无法使用请求的内容特性响应请求的网页。</p>
+<p><strong>407 Proxy Authentication Required</strong><br>需要代理授权，此状态代码与401未授权）类似，但指定请求者应当授权使用代理。</p>
+<p><strong>408 Request Timeout</strong><br>请求超时，表示服务器等候请求时发生超时。</p>
+<p><strong>409 Conflict</strong><br>冲突，表示服务器在完成请求时发生冲突。服务器必须在响应中包含有关冲突的信息。</p>
+<p><strong>410 Gone</strong><br>已删除，如果请求的资源已永久删除，服务器就会返回此响应。</p>
+<p><strong>411 Length Required</strong><br>需要有效的长度，表示服务器不接受不含有效内容长度标头字段的请求。</p>
+<p><strong>412 Precondition Failed</strong><br>未满足前提条件，表示服务器未满足请求者在请求中设置的其中一个前提条件。</p>
+<p><strong>413 Request Entity Too Large</strong><br>请求实体过大，表示服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</p>
+<p><strong>414 Request-URI Too Long</strong><br>请求的URI过长，表示请求的 URI（通常为网址）过长，服务器无法处理。</p>
+<p><strong>415 Unsupported Media Type</strong><br>不支持的媒体类型，表示请求的格式不受请求页面的支持。</p>
+<p><strong>416 Requested Range Not Satisfiable</strong><br>请求范围不符合要求，表示如果页面无法提供请求的范围，则服务器会返回此状态代码。</p>
+<p><strong>417 Expectation Failed</strong><br>未满足期望值，服务器未满足“期望”请求标头字段的要求。</p>
+<h3 id="Server-Error-5xx"><a href="#Server-Error-5xx" class="headerlink" title="Server Error 5xx"></a>Server Error 5xx</h3><p>5xx系列状态代码表示服务器在尝试处理请求时发生内部错误。这些错误可能是服务器本身的错误，而不是请求出错。</p>
+<p><strong>500 Internal Server Error</strong><br>服务器内部错误，表示服务器遇到错误，无法完成请求。</p>
+<p><strong>501 Not Implemented</strong><br>尚未实施，表示服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。</p>
+<p><strong>502 Bad Gateway</strong><br>网关错误，表示服务器作为网关或代理，从上游服务器收到无效响应。</p>
+<p><strong>503 Service Unavailable</strong><br>服务不可用，表示服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态。</p>
+<p><strong>504 Gateway Timeout</strong><br>网关超时，表示服务器作为网关或代理，但是没有及时从上游服务器收到请求。</p>
+<p><strong>505 HTTP Version Not Supported</strong><br>不支持的HTTP版本，表示服务器不支持请求中所用的 HTTP 协议版本。</p>
+<p>HTTP/1.0的响应状态码文档：<a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#Status-Codes" target="_blank" rel="external">http://www.w3.org/Protocols/HTTP/1.0/spec.html#Status-Codes</a><br>HTTP/1.1的响应状态码文档：<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="external">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a><br>HTTP协议详解（中文），很经典：<a href="http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html" target="_blank" rel="external">http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html</a><br>HTTP协议状态码详解：<a href="http://blog.webshuo.com/2011/02/17/http%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3%EF%BC%88http-status-code%EF%BC%89/" target="_blank" rel="external">http://blog.webshuo.com/2011/02/17/http%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3%EF%BC%88http-status-code%EF%BC%89/</a></p>
+<p>UPDATE: 2012-11-26<br>虽然我刚写完了些内容，但是别人问到时其中的部分状态码时我还是不知道怎么回事。像我这种不求甚解的学习方式是不行的，以后得好好的深入学习。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+          <a class="category" href="/tags/web/">web</a>
+        
+          <a class="category" href="/tags/http/">http</a>
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2012/10/27/the-book-and-the-sword/" title="Next Post: 我读书剑恩仇录"> &laquo; 我读书剑恩仇录</a>
+        
+        
+          <a class="basic-alignment right" href="/2012/12/31/2012-this-is-my-year/" title="Next Post: 2012岁末总结">2012岁末总结 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+    <section>
+  <h1>Comments</h1>
+  <div id="disqus_thread"></div>
+<script>
+  var disqus_shortname = 'chenzhiwei';
+  var disqus_config = function () {
+    this.page.url = 'https://blog.chenzhiwei.cn/2012/11/13/http-request-method-and-status-code/';
+    this.page.identifier = 'https://blog.chenzhiwei.cn/2012/11/13/http-request-method-and-status-code/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

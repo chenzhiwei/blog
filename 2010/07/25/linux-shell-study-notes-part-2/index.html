@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>linux shell学习笔记(二) - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/07/25/linux-shell-study-notes-part-2/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">linux shell学习笔记(二)</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-07-25</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>这篇日志主要写shell中的控制语句，有两种判断语句，if语句和case语句，学过C语言的同学一定不会陌生，很简单的用法。</p>
+<a id="more"></a>
+<p>七、shell中的控制判断语句</p>
+<ol>
+<li>if语句</li>
+</ol>
+<p>原型一</p>
+<pre><code>if 测试条件
+then 语句1
+fi
+</code></pre><p>原型二</p>
+<pre><code>if 测试条件
+then 语句1
+else 语句2
+fi
+</code></pre><p>原型三</p>
+<pre><code>if 测试条件1
+then 语句1
+elif 测试条件2
+then 语句2
+else 语句3
+fi
+</code></pre><p>在if语句中一个重要的环节是编写测试条件，也就是程序执行的判断条件。if语句中可以将命令执行结果当作测试条件。例如：若命令正常结束，则表示测试成功，其返回值为0，条件测试为真；否则条件测试为假。测试条件编写一般有以下3种形式：</p>
+<p>（1）. 用test命令</p>
+<p>（2）. 用方括号把测试条件括起来。</p>
+<p>（3）. 采用[[条件表达式]]方式，条件表达式用来测试文件的属性和进行字符串比较。</p>
+<p>test命令原型如下：</p>
+<p>test 表达式</p>
+<p>test一般与系统运算搭配起来使用，它可以与如下四类运算符共同使用。</p>
+<p>第一类：字符测试运算符</p>
+<p>字符测试运算符的作用是用于测试字符串操作的返回值，具体参数如下：</p>
+<p>-z str1 ：如果字符串str1的长度为0，则测试条件为真<br>-n str1 ：如果字符串str1的长度大于0，则测试条件为真<br>str1       ：如果字符串str1不是空串，则测试条件为真<br>str1 = str2 ：如果字符串str1等于字符串str2，则测试条件为真<br>str1 != str2 ：如果字符串str1不等于字符串str2，则测试条件为真<br>str1 &gt; str2 ：如果按字典顺序字符串str1排在str2之后，则测试条件为真<br>str1 &lt; str2 ：如果按字典顺序字符串str1排在str2之前，则测试条件为真</p>
+<p>注：=、!=、&lt;、&gt;，这些符号在使用时两边要加空格</p>
+<p>例：</p>
+<pre><code>#!/bin/bash
+echo &quot;input your address:&quot;
+read address
+if address
+then
+    echo &quot;your address is: &quot;$address
+else
+    echo &quot;your address is null&quot;
+fi
+</code></pre><p>以上程序意思是用户输入一字符串，如果输入字符串长度大于0，则输出用户输入的字符串，否则输出空。</p>
+<p>第二类：数值测试运算符</p>
+<p>数值测试运算符主要用于数值运算时的判断，具体参数如下：</p>
+<p>num1 -eq num2 ：如果整数num1等于num2，则测试条件为真<br>num1 -ne num2 ：如果整数num1不等于num2，则测试条件为真<br>num1 -lt num2 ：如果整数num1小于num2，则测试条件为真<br>num1 -le num2 ：如果整数num1小于或等于num2，则测试条件为真<br>num1 -gt num2 ：如果整数num1大于num2，则测试条件为真<br>num1 -ge num2 ：如果整数num1大于或等于num2，则测试条件为真</p>
+<p>第三类：逻辑运算符</p>
+<p>逻辑运算符用于逻辑语句的判断，常用的逻辑运算符如下：</p>
+<p>! ：逻辑“非”，放在任意逻辑表达式的前面，全原来为真的表达式为假，原来为假的表达式为真<br>-a ：逻辑“与”，放在两个逻辑表达式之间，表示只有两个表达式都为真时，结果才为真<br>-o ：逻辑“或”，放在两个逻辑表达式之间，表示只有两个表达式都为假时，结果才为假<br>() ：圆括号可以把逻辑表达式括起来，使用之成为一个整体，优先进行运算</p>
+<p>注：逻辑表达式中运算符的优先关系如下：”()”&gt;”!”&gt;”-a”&gt;”-o”。</p>
+<p>第四类：文件运算符</p>
+<p>文件运算符用于测试文件或目录的操作，常用文件运算符如下：</p>
+<p>-r 文件名：若文件存在并且是用户可读的，则测试条件为真<br>-w 文件名：若文件存在并且是用户可写的，则测试条件为真<br>-x 文件名：若文件存在并且是用户可执行的，则测试条件为真<br>-f  文件名：若文件存在并且是普通文件，则测试条件为真<br>-d 文件名：若文件存在并且是目录文件，则测试条件为真<br>-p 文件名：若文件存在并且是命名的FIFO文件，则测试条件为真<br>-b 文件名：若文件存在并且是块设备文件，则测试条件为真<br>-c 文件名：若文件存在并且是字符设备文件，则测试条件为真<br>-s 文件名：若文件存在并且长度大于0，则测试条件为真<br>-t 文件描述字：若文件被打开并且文件描述字是与终端设备相关的，则测试条件为真，默认的文件描述字是1。</p>
+<ol>
+<li>case语句</li>
+</ol>
+<p>case语句是一种多重判断语句，类似于多个if elif语句，其原型如下：</p>
+<pre><code>case 字符串 in
+    模式表达式1) 语句1;;
+    模式表达式2) 语句2;;
+    模式表达式3) 语句3;;
+    ...
+esac
+</code></pre><p>case语句执行原理是将字符串与各个模式串顺次匹配，若满足则执行，否则继续查找，如果没有匹配成功的，则不执行任何语句，直接退出。</p>
+<p>注：每个模式处理语句是以”;;”两个分号结束的，模式表达式应该唯一，一个模式表达式可以含有多个模式串，但它们之间要用”|”隔开。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/07/24/linux-shell-study-notes-part-1/" title="Next Post: linux shell学习笔记(一)"> &laquo; linux shell学习笔记(一)</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/07/28/linux-shell-study-notes-part-3/" title="Next Post: linux shell 学习笔记(三)">linux shell 学习笔记(三) &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

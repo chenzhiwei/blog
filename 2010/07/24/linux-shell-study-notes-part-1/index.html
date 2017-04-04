@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>linux shell学习笔记(一) - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/07/24/linux-shell-study-notes-part-1/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">linux shell学习笔记(一)</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-07-24</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>昨天逛dengmin同学的博客，发现他把自己的php学习笔记都放在的博客上，我想了一下，感觉还是将我学习shell时做的笔记写在博客上吧，虽然很简单，但是毕竟写在纸上不如放在博客上，写在博客上自己随时都可以查看。</p>
+<a id="more"></a>
+<p>在计算机科学中，Shell俗称壳（用来区别于核），是指“提供使用者使用界面”的软件（命令解析器）。它类似于DOS下的command.com。它接收用户命令，然后调用相应的应用程序。同时它又是一种程序设计语言。作为命令语言，它交互式解释和执行用户输入的命令或者自动地解释和执行预先设定好的一连串的命令；作为程序设计语言，它定义了各种变量和参数，并提供了许多在高阶语言中才具有的控制结构，包括循环和分支。shell是一种解释型编程语言，这些都不重要，重要的是怎么使用它。</p>
+<p>一、 执行shell脚本的方法</p>
+<ol>
+<li><p>输入重定向到shell脚本，具体来讲是利用输入重定向机制，让shell解释器顺序读取每一行脚本命令，进行执行，使用原型为bash&gt;脚本文件名，例如：bash&gt;test.sh。</p>
+</li>
+<li><p>类似于方法1，不过它是以脚本文件名为参数来执行的，原型：bash test.sh 。</p>
+</li>
+<li><p>将脚本文件设置成可执行文件，直接调用执行，./test.sh 。(用chmod +x test.sh将脚本文件加上可执行权限)</p>
+</li>
+</ol>
+<p>二、shell的基本语法</p>
+<p>赋值一般采用以下形式：变量名=字符串</p>
+<ol>
+<li><p>“=”号两边是不能有空格的，不然会出错的。</p>
+</li>
+<li><p>若赋值语句中，“=”后面没有任何内容，则该变量为一个空字符串，若只声明而没赋值，则该变量默认也是一个空字符串。</p>
+</li>
+<li><p>若一个变量中含有空格、制表符、换行符，则要用双引号括起来，不然会出错。</p>
+</li>
+<li><p>在shell程序文件中，如果想引用已经定义的变量，一般要在变量名前加“$”符号，这个符号含义是告诉shell，后面是一个变量。</p>
+</li>
+<li><p>在shell变量引用中，一个变量与一个长字符串的组合，如果当前变量处在字符串的最后，可以利用直接引用的方式；如果处在中间或开头的位置，则可以用花括号将变量名包含起来。如下：<br>程序：</p>
+<pre><code>#!/bin/bash
+address=beijing
+echo $address
+echo ${address}test
+echo test$address
+</code></pre></li>
+</ol>
+<p>输出：</p>
+<pre><code>beijing
+beijingtest
+testbeijing
+</code></pre><p>三、shell中的通配符(用于模式匹配)</p>
+<ol>
+<li>“*”符号</li>
+</ol>
+<p>“<em>”符号用于匹配字符串中0次或多次出现的字符，如：s</em>可以匹配shell、shanghai等。在使用“<em>”符号时要注意一点，在匹配文件名与路径名时，“.”符号与“\”必须显示匹配，如：</em>test不能匹配“.httest”文件，而要用“.<em>test”来匹配，同学“/home/test”需要用”/</em>/test”来匹配。</p>
+<ol>
+<li>“?”符号</li>
+</ol>
+<p>“?”符号仅匹配对应位置的一个字符。如：m?ke可匹配”mike”、”make”等，但不能匹配”mooke”。</p>
+<ol>
+<li>“[]“符号</li>
+</ol>
+<p>“[]“称号的作用是匹配该字符组所限定范围内的任何一个字符，方括号中的字符可以由直接级出的字符组成，如：[adehk]；也可以由表示限定范围的起始字符和终止字符及中间的连接字符”-”组成。如：[a-zA-H]、[0-9]等。</p>
+<ol>
+<li>“!”符号</li>
+</ol>
+<p>“!”符号是与”[]“符号配合使用的，”!”的作用是匹配不在方括号中列出的字符。例如：t[!a-h]st，则可表示tyst、t9st，但不能表示test。</p>
+<p>四、shell中的输入</p>
+<p>shell中输入是由函数read实现，原型为：read 变量1 [变量2]</p>
+<p>利用read函数可以交互地为变量赋值，当然也可以通过制表符或空格为多变量赋值，说明如下：</p>
+<ol>
+<li><p>如果变量个数多于输入串中字符串个数，则依次赋值，剩下变量取空值。</p>
+</li>
+<li><p>如果变量个数等于输入串中字符串个数，则一一对应赋值。</p>
+</li>
+<li><p>如果变量个数少于输入串中字符串个数，刚除依次赋值外，最后一个变量接纳剩下的字符串。</p>
+</li>
+</ol>
+<p>例如：</p>
+<pre><code>#!/bin/bash
+echo &quot;input your name and age:&quot;
+read name age
+echo &quot;your name is: &quot;$name
+echo &quot;your age is: &quot;$age
+</code></pre><p>如果你输入Jim 15 则输出：</p>
+<pre><code>input your name and age:
+your name is: Jim
+your age is: 15
+</code></pre><p>五、shell中的输出</p>
+<p>shell中输出是由echo函数实现的，echo可直接输出其后面所跟变量的值或直接输出其后面的字符串。echo函数后面以空格隔开，以换行符终止。如果数据之间要保留多个空格，则要用双引号把它们括起来以便shell对它们进行正确的操作。另：echo函数还定义了一组转义字符，在使用转义字符时要加入”-e”选项。其转义字符如下：</p>
+<p>“\a” ：响铃报警，”\b” ：后退一字符，”\f” ：换页，”\n” ：显示换行，”\t” ：制表符，”\v” ：垂直制表符，”\r” ：回车符，”\” ：反斜线。</p>
+<p>例如：</p>
+<pre><code>#!/bin/bash
+echo -e hello,&apos;\n&apos;world!
+echo hello,&apos;\n&apos;world!
+echo &apos;-e&apos; hello,&apos;\n&apos;world!
+echo -e hello,&quot;\n&quot;world!
+echo -e hello,\nworld!
+echo hello,\nworld!
+</code></pre><p>输出：</p>
+<pre><code>hello,
+world!
+hello,\nworld!
+hello,
+world!
+hello,
+world!
+hello,nworld!
+hello,nworld!
+</code></pre><p>六、shell中的数组</p>
+<p>shell支持一维数组，但并不限定数组大小，数组下标从0开始。</p>
+<p>在操作数组时，取值方式是：!{数组名[下标]} ；赋值方式是：数组名[下标]=值 (为单个数组元素赋值)；如果要对整个数组的所有元素赋值，可以采用：数组名=(值1，值2，值3，…)，值与值之间要用空格隔开。</p>
+<p>遍历数组除用循环外还可用：“数组名[*]”或“数组名[@]”，例如：</p>
+<pre><code>#!/bin/bash
+array1[0]=beijing
+array1[1]=shanghai
+array2=(guangzhou,shenzhen,chengdu)
+echo &quot;\${array1[0]} = &quot; ${array1[0]}
+echo &quot;\$array1[1] = &quot;$array1[1]
+echo &quot;\${array1[*]} = &quot;${array1[*]}
+echo &quot;\$array1 = &quot;$array1
+echo &quot;\${array2[*]} = &quot;${array2[*]}
+echo &quot;\${array2[@]} = &quot;${array2[@]}
+echo &quot;\$array2 = &quot;$array2
+echo &quot;\$array2[1] = &quot;$array2[1]
+</code></pre><p>输出：</p>
+<pre><code>${array1[0]} =  beijing
+$array1[1] = beijing[1]
+${array1[*]} = beijing shanghai
+$array1 = beijing
+${array2[*]} = guangzhou,shenzhen,chengdu
+${array2[@]} = guangzhou,shenzhen,chengdu
+$array2 = guangzhou,shenzhen,chengdu
+$array2[1] = guangzhou,shenzhen,chengdu[1]
+</code></pre><p>注：数组的赋值与输出有点麻烦。</p>
+<p>对于数组修改操作，可以再对其重新赋值；但如果要删除一个已经赋值后的元素则需要借助一个外部命令：unset，如：unset array[0]可清空下标为0的元素，此时数组大小减一；unset array[@]可以清空整个数组元素所有元素。例如：</p>
+<pre><code>#!/bin/bash
+address=(beijing,shanghai,shandong)
+address[0]=nanjing
+echo ${address[*]}
+unset address[0]
+echo ${address[*]}
+</code></pre><p>输出：</p>
+<pre><code>beijing shanghai shandong
+shanghai shandong
+</code></pre><p>注：关于数组输入与输出规则比较多，得多练习掌握。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/06/26/recomend-7zip/" title="Next Post: 推荐使用7-Zip软件进行解压缩"> &laquo; 推荐使用7-Zip软件进行解压缩</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/07/25/linux-shell-study-notes-part-2/" title="Next Post: linux shell学习笔记(二)">linux shell学习笔记(二) &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

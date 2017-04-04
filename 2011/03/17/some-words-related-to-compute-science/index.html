@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>这个周接触的几个词语 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2011/03/17/some-words-related-to-compute-science/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">这个周接触的几个词语</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2011-03-17</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>博客里没什么内容可写，就记录一下自己最近接触的词语吧。最近了解了很多词语，有些是自己以前就知道了，就不记了。有些自己知道但有时会迷糊的和自己之前不知道的，都记录了下来。有些是我遇到的，有些是延伸出来的。也不知道这些词语能否称为计算机术语，这些是我从百科词条上摘录下来的，改动的地方很少。</p>
+<a id="more"></a>
+<h2 id="异步："><a href="#异步：" class="headerlink" title="异步："></a>异步：</h2><p>异步（asynchronous）是一种通讯方式，即通讯双方不需要有共同的时钟，也就是说接收方不知道发送方何时发送，因此发送方在发送的数据中需要含有提示接收方开始接收的信息，如开始接收时有“开始位”，停止接收时有“停止位”。</p>
+<p>异步通信在发送字符时，所发送的字符之间的时间间隔可以是任意的。当然，接收端必须时刻做好接收的准备（如果接收端主机的电源都没有加上，那么发送端发送字符就没有意义，因为接收端根本无法接收）。发送端可以在任意时刻开始发送字符，因此必须在每一个字符的开始和结束的地方加上标志，即加上开始位和停止位，以便使接收端能够正确地将每一个字符接收下来。异步通信的好处是通信设备简单、便宜，但传输效率较低（因为开始位和停止位的开销所占比例较大）。</p>
+<p>在编程中，异步的概念和同步相对，当一个异步过程调用发出后，调用者不能够立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者。</p>
+<h2 id="同步："><a href="#同步：" class="headerlink" title="同步："></a>同步：</h2><p>同步（synchronous,sync,synchronism,synchronization）就是协同步调，按预定的先后次序进行运行。指两个或两个以上随时间变化的量在变化过程中保持一定的相对关系。</p>
+<p>在编程中，同步就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回，同时其他线程也不能调用这个方法。一般而言，我们所说的同步特指那些需要其他部件协作或者需要一定时间完成的任务。</p>
+<p>在通信中领域，同步通信的通信双方必须先建立同步，即双方的时钟要调整到同一个频率。收发双方不停地发送和接收连续的同步比特流。但这分为两种不同情况的同步方式。一种是全网同步，即用一个非常精确的主时钟对全网所有结点上的时钟进行同步。另一种是准同步，即各结点的时钟之间允许有微小的误差，然后采用其他实现同步传输。</p>
+<p>进程同步：</p>
+<p>进程同步是指一组相互协调的进程，在完成同一任务，对某些共享资源进行操作时，为协调资源占用而相互等待、相互交换信息所产生的制约关系。（互斥是指并发进程间因相互竞争使用独占资源所生产的制约关系。）</p>
+<h2 id="REST："><a href="#REST：" class="headerlink" title="REST："></a>REST：</h2><p>REST(Representation State Transfer,表述性状态转移)是一种针对网络应用的设计和开发方式，可以降低开发的复杂性，提高系统的可伸缩性。</p>
+<p>REST的设计理念和准则如下：</p>
+<p>1.网络上的所有事物都被抽象为资源（resource）；</p>
+<p>2.每个资源对应一个唯一的资源标识（resource identifier）；</p>
+<p>3.通过通用的连接器接口（generic connector interface）对资源进行操作；</p>
+<p>4.对资源的各种操作不会改变资源标识；</p>
+<p>5.所有的操作都是无状态的（stateless）。</p>
+<p>对于当今最常见的网络应用来说，resource identifier是URL，generic connector interface是HTTP，第4条准则就是我们常说的URL不变性。这些概念中的resource最容易使人产生误解。resource所指的并不是数据，而是数据+特点的表现形式（representation），这也是为什么REST的全名是Representation State Transfer的原因。举个例子来说，“中国最大的10家网络公司”和“你最喜欢的10家网络公司”在数据上可能有重叠（即有一家网络公司是中国前十大，并且你又喜欢），甚至完全相同（中国最大的前10家网络公司也是你最喜欢的10家网络公司）。但是他们 的representation不同，因此是不同的resource。</p>
+<p>REST之所以能够简化开发，是因为引入的架构约束，比如Rails1.2（Rails是一个更符合实际需要而且更高效的Web开发框架，其结合了PHP体系的优点&lt;快速开发&gt;和Java体系的优点&lt;程序规整&gt;。）中对REST的实现默认把controller中的方法限制在7个（index,show,new,edit,create,update,destory），其实就是对CRUD的实现。更进一步讲，Rails使用HTTP作为generic connector interface，HTTP规则把对一个URL的操作限制在了4个之内（GET,POST,PUT,DELETE）。</p>
+<p>REST之所以能够提高系统的可伸缩性，是因为它强制所有操作都是stateless的，这样就没有context的约束，如果要做分布式、做集群，就不需要考虑context的问题了。同时，它令系统可以有效地使用pool。REST对性能的另一个提升来自其对client和server任务的分配：server只负责提供resource以及操作resource的服务，而client要根据resource中的data和representation自己做render，这就减少了服务器的开销。</p>
+<h2 id="SLA（服务等级协议）："><a href="#SLA（服务等级协议）：" class="headerlink" title="SLA（服务等级协议）："></a>SLA（服务等级协议）：</h2><p>SAL，Service-Level Agreement的缩写，意思是服务等级协议。</p>
+<p>服务等级协议是关于网络服务提供商和客户间的一份合同，其中定义了服务类型、服务质量和客户付款等术语。</p>
+<p>典型的SLA包括以下几条：</p>
+<p>1.分配给客户的最小带宽</p>
+<p>2.客户带宽极限</p>
+<p>3.有同时服务的客户数目</p>
+<p>4.在可能影响用户行为的网络变化之前的通知安排</p>
+<p>5.拨入访问可用性</p>
+<p>6.运用统计学</p>
+<p>7.服务提供商支持的最小网络利用性能（如99.99%有效工作时间或每天最多1分钟的停机时间）</p>
+<p>8.各类客户的流量优先权</p>
+<p>9.客户技术支持和服务</p>
+<p>10.惩罚规定，为服务提供商不能满足SLA需求所指定</p>
+<p>按照SLA要求，服务提供商采用多种技术和解决方案去监控和管理网络性能及流量，以满足SLP中相关需求，并产生对应的客户结果报告。</p>
+<p>另一方面，客户本身也提出了自己的技术及解决方案去监控邻居的流量和服务，以确保提供他们答应的传送服务项目。</p>
+<h2 id="SLP（服务定位协议）："><a href="#SLP（服务定位协议）：" class="headerlink" title="SLP（服务定位协议）："></a>SLP（服务定位协议）：</h2><p>SLP，Service Location Protocol，服务定位协议。SLP为网络服务的发现和选择提供一种可扩展构架。通过SLP协议，使用Internet服务的计算机不再需要那么多为网络应用程序服务的静态配置。这对便携式电脑或性急的或无法满足网络系统管理需求的用户来说尤其重要。</p>
+<p>习惯上，用户使用网络主机名（可读的文本字符串），也称为网络地址的别名找到服务。SLP使得用户不再需要通过获取网络主机名得到支持服务，用户为服务命名并提供属性集。SLP允许用户将这些描述捆绑到服务的网络地址上。</p>
+<p>SLP为局域网的应用程序提供了一种动态配置机制，但它不是整个互联网的全球网络方案系统，而只是服务于提供共享服务的企业网络。作为客户机模型的应用程序需要发现企业网络中远端的服务器，而对于拥有很多不同可用服务、客户机的系统，采纳此协议可以充分利用邻近目录代理为发布的服务提供集中存储点。</p>
+<h2 id="RPC（进程过程调用协议）："><a href="#RPC（进程过程调用协议）：" class="headerlink" title="RPC（进程过程调用协议）："></a>RPC（进程过程调用协议）：</h2><p>RPC，Remote Procedure Call Protocol，远程过程调用协议。RPC是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。RPC协议假定某些传输协议的存在，如TCP和UDP，为通信程序之间携带信息数据。在OSI网络通信模型中，RPC跨跃了传输层和应用层。RPC使得开发包括网络分布式多程序在内的应用程序更加容易。</p>
+<p>RPC采用客户机/服务器模式。请求程序就是一个客户机，而服务提供程序就是一个服务器。首先，调用进程发送一个有进程参数的调用信息到服务进程，然后等待应答信息。在服务器端，进程保持睡眠状态直到调用信息的到达为止。当一个调用信息到达，服务器获得进程参数，计算结果，发送答复信息，然后等待下一个调用信息，最后，客户端调用过程接收答复信息，获得进程结果，然后调用执行继续进行。</p>
+<h2 id="InnoDB："><a href="#InnoDB：" class="headerlink" title="InnoDB："></a>InnoDB：</h2><p>InnoDB是事务型数据库的首选引擎，支持ACID（ACID指数据库事务正确执行的四个基本要素的缩写，原子性，一致性，隔离性、持久性）事务，支持等级锁定。InnoDB是为处理巨大数据量时做的最大性能设计。InnoDB存储引擎完全与MySQL服务器整合，InnoDB存储引擎为在主内存中缓存数据和索引而维持它自己的缓冲池。InnoDB存储它的表和索引在一个表空间中，表空间可以包含数个文件（或原始磁盘分区）。这与MyISAM表不同，比如在MyISAM表中每个表被存在分享的文件中。InnoDB表可以是任何尺寸，即使在文件尺寸被限制为2GB的操作系统上。InnoDB默认被包含在MySQL二进制分发中。</p>
+<p>InnoDB为MySQL提供了具有事务（transaction）、回滚（rollback）和崩溃修复能力（crash recovery capabilitis）、多版本控制（multi-versioned concurrency control）的事务安全（transaction-safe(ACID compliant)）型表。InnoDB提供了行级锁（locking on row level），提供与Oracle类似的不加锁读取（non-locking read in SELECTs）。InnoDB锁定在行级并且也为SELECT语句提供一个Oracle风格一致的非锁定读。这些特色增加了多用户部署和性能。没有在InnoDB中扩大锁定的需要，因为在InnoDB中行级锁定适合非常小的空间。InnoDB也支持FOREIGN KEY强制。在SQL查询中，你可以自由地将InnoDB类型的表与其他MySQL类型混合起来，甚至在同一个查询中也可以混合。这些特性均提高了多用户并发操作的性能表现。在InnoDB表中不需要扩大锁定（lock escalation），因为InnoDB的行级锁定（row level locks）适宜非常小的空间。InnoDB是MySQL上第一个提供外键约束（FOREIGN KEY constraints）的表引擎。</p>
+<h2 id="MyISAM："><a href="#MyISAM：" class="headerlink" title="MyISAM："></a>MyISAM：</h2><p>MyISAM是默认存储引擎。它基于更老的ISAM代码，但有很多有用的扩展。（另，MySQL5.1不支持ISAM）。每个MyISAM在磁盘上存储成三个文件。第一个文件的名字以表的名字开始，扩展名指出文件类型。文件存储表的扩展名是.frm；数据文件的扩展名为.MYD（MYDATA）；索引文件的扩展名是.MYI（MyIndex）。MyISAMchk工具可以检查和修复MyISAM表。</p>
+<h2 id="InnoDB与MyISAM的基本差别："><a href="#InnoDB与MyISAM的基本差别：" class="headerlink" title="InnoDB与MyISAM的基本差别："></a>InnoDB与MyISAM的基本差别：</h2><p>MyISAM类型不支持事务处理等高级处理，而InnoDB类型支持。MyISAM类型的表强调的是性能，其执行速度比InnoDB类型更快，但是不提供事务支持，而InnoDB提供事务支持以及外部键等高级数据库功能。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2011/03/16/internship-of-my-senior-year/" title="Next Post: 我的实习工作已经确定下来了"> &laquo; 我的实习工作已经确定下来了</a>
+        
+        
+          <a class="basic-alignment right" href="/2011/03/28/linux-nfs-vsftp-samba/" title="Next Post: Linux下的NFS,VSFTP,Samba的简单配置">Linux下的NFS,VSFTP,Samba的简单配置 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

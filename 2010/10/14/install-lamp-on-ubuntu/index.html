@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>LAMP安装配置小记 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/10/14/install-lamp-on-ubuntu/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">LAMP安装配置小记</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-10-14</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>LAMP就是linux+apache+mysql+php，是一组常用来搭建动态网站或者服务器的开源软件，本身都是各自独立的程序，但是因为常被放在一起使用，拥有了越来越高的兼容度，共同组成了一个强大的Web应用程序平台。之前我在ubuntu上已经安装过很多次了，但都是在图形界面里安装，这次我直接在命令行里安装的，其实在图形界面与在命令行安装并没有太大的差别。</p>
+<a id="more"></a>
+<p>安装Apache+MySQL+PHP5</p>
+<pre><code>$sudo apt-get install apache2 mysql-server php5 php5-mysql
+</code></pre><p>下面主要说说他们的配置文件：</p>
+<p>Apache配置文件：/etc/apache2/apache2.conf</p>
+<pre><code>ServerTokens   OS
+#告诉客户端服务器的版本与操作系统，如果不想让客户端知道太多信息可以将OS改为Minor
+ServerRoot   &quot;/etc/apache2&quot;
+#这是配置文件的最顶层目录，下面某些配置使用相对路径时，就是该目录的下层目录
+PidFile    /var/run/apache2.pid
+#存放pid文件，可方便Apache软件管理。
+Timeout    120
+#持续联机阶段如果等待超过120秒则中断本次联机
+KeepAlive    On
+#是否允许持续性联机，即一个TCP联机可以具有多个文件资料的传送要求
+#例如，一个网页内含有多张图片时，那么一次联机就能将所有图片传送完
+#而不必对每张图片都进行一次TCP连接
+MaxKeepAliveRequests    500
+#当KeepAlive设置为On时，这个数值代表该次联机能够传输的最大数据量，0表示不限制
+KeepAliveTimeout    15
+#在允许KeepAlive的前提下，该次联机在最后一次传输后等待延迟的秒数
+Listen    80
+#服务器端口号
+ServerAdmin    linux@linux.os
+#系统管理员电子邮箱，当网站出现问题时，错误信息的联系邮箱
+ServerName    linux.os
+#主机名称，若没指定，默认以hostname为依据
+AddLanguage    zh-CN .zh-cn
+AddCharset    GB2312 .GB2312 .gb2312
+#AddDefaultCharset    UTF-8 //一般不用此项，而在网页头部宣告即可。
+LanguagePriority    zh-CN zh-TW en ca ...
+#语言处理优先级
+DocumentRoot    &quot;/var/www&quot;
+#服务器主网页所放位置的目录
+&lt;Directory &quot;/var/www&quot;&gt;
+    Options Indexes FollowSymLinks    #Indexes表示没有首页则列出当前目录所有文件
+    AllowOverride  None
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+#注：
+#FollowSymLinks:让在此目录下的链接文件可以连接出此目录
+#AllowOverride:表示是否允许额外配置文件&quot;.htaccess&quot;的重写，其值有以下几种
+#    *All:全部权限均可被重写
+#    *AuthConfi:仅有认证网页可重写（用户名和密码认证）
+#    *Indexes:仅允许Indexes方面的重写
+#    *Limits:允许用户利用Allow,Deny与Order管理可浏览的权限
+#    *None:不可重写，即&quot;.htaccess&quot;文件无效
+DirectoryIndex    index.html index.htm index.php
+#默认首页文件
+</code></pre><p>此外还有建立虚拟主机及对SSL的支持，这些内容就不再多说了，阅读一下配置文件就知道。以上这些写出来的配置也在配置文件里有很好的说明了，这里算是汉语版的简要说明。只要改动Apache的配置文件时，都需要重新启动Apache服务器。关于Apache服务器启动关闭的相关命令如下：</p>
+<pre><code>root@linux:# /etc/init.d/apache2 start    #启动Apache服务器
+root@linux:# /etc/init.d/apache2 stop    #关闭Apache服务器
+root@linux:# /etc/init.d/apache2 restart    #重新启动Apache服务器
+</code></pre><p>PHP的配置文件：/etc/php5/apache2/php.ini</p>
+<pre><code>LoadModule php5_module modules/libphp5.so
+AddType application/x-httpd-php .php
+#这两行的意思分别代表加载PHP模块和增加PHP附文件名为.php的文件处理方式
+register_globals=Off
+#一般都将其设置成Off，减少安全问题
+log_errors=On
+ignore_repeated_errors=On
+ignore_repeated_source=On
+#将PHP程序错误日志记录下来并忽略重复日志数据
+display_errors=Off
+display_startup_errors=Off
+#当程序发生问题时，是否在浏览器中显示错误信息
+#一般本地调试时开启，开放浏览时关闭
+</code></pre><p>MySQL数据库的配置比较简单，不多说了。</p>
+<p>这些配置文件的配置说明在配置文件中都已经存在了，懂点英文的话都能看明白，这里写出来只是为了自己查看记忆。</p>
+
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/09/18/ip-address-and-related/" title="Next Post: IP地址及相关知识"> &laquo; IP地址及相关知识</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/10/16/ubuntu-and-winxp-repair-grub2/" title="Next Post: Ubuntu+WinXP双系统修复grub2引导的方法">Ubuntu+WinXP双系统修复grub2引导的方法 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

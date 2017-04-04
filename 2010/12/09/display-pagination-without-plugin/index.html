@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  
+  <title>不用插件实现wordpress分页导航的方法 - 陈志伟博客</title>
+  <meta name="theme-color" content="#33333">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://blog.chenzhiwei.cn/2010/12/09/display-pagination-without-plugin/">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/modernizr-2.0.js"></script>
+<script src="/js/libs/jquery.min.js"></script>
+<script src="/js/octopress.js"></script>
+</head>
+
+
+  <body>
+
+    <header role="banner">
+  <hgroup>
+    <h1><a href="/">陈志伟博客</a></h1>
+    
+      <h2>善始者实繁，克终者盖寡。</h2>
+    
+  </hgroup>
+</header>
+<nav role="navigation">
+  <ul class="subscription" data-subscription="rss">
+    <li><a href="https://feeds.feedburner.com/chenzhiwei" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    
+  </ul>
+  
+  <form action="https://www.google.com/search" method="get" target="_blank">
+    <fieldset role="search">
+      <input type="hidden" name="sitesearch" value="blog.chenzhiwei.cn">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+  </form>
+  
+  <ul class="main-navigation">
+  
+    <li><a href="/">Home</a></li>
+  
+    <li><a href="/about/">About</a></li>
+  
+    <li><a href="/archives/">Archives</a></li>
+  
+  </ul>
+</nav>
+
+    <div id="main">
+      <div id="content">
+        <div>
+  <article class="hentry" role="article">
+    <header>
+  
+    <h1 class="entry-title">不用插件实现wordpress分页导航的方法</h1>
+  
+  <p class="meta">
+    <time class="entry-date" datetime="2016-08-13T16:39:09+08:00"><span class="date">2010-12-09</span> <span class="time"></span></time>
+  </p>
+</header>
+
+
+  <div class="entry-content">
+    <p>一直想把自己博客主题里的代码拿出晒晒，今天就晒一下博客分页导航的代码。很多同学应该都听说过wp-pagenavi吧，这是一个很优秀的wordpress分页导航插件，我使用了很长时间。就在前段时间，我下载了一个国外wordpress主题（已经忘记是哪个了），看到里主题里面的分页导航代码，于是就拿来用了。</p>
+<a id="more"></a>
+<p>不多说了，直接上代码：</p>
+<pre><code>/**
+ * PAGINATION
+ * Retrieve or display pagination code.
+ *
+ * The defaults for overwriting are:
+ * &apos;page&apos; - Default is null (int). The current page. This function will
+ *      automatically determine the value.
+ * &apos;pages&apos; - Default is null (int). The total number of pages. This function will
+ *      automatically determine the value.
+ * &apos;range&apos; - Default is 3 (int). The number of page links to show before and after
+ *      the current page.
+ * &apos;gap&apos; - Default is 3 (int). The minimum number of pages before a gap is 
+ *      replaced with ellipses (...).
+ * &apos;anchor&apos; - Default is 1 (int). The number of links to always show at begining
+ *      and end of pagination
+ * &apos;before&apos; - Default is &apos;&lt;div class=&quot;emm-paginate&quot;&gt;&apos; (string). The html or text 
+ *      to add before the pagination links.
+ * &apos;after&apos; - Default is &apos;&lt;/div&gt;&apos; (string). The html or text to add after the
+ *      pagination links.
+ * &apos;title&apos; - Default is &apos;__(&apos;Pages:&apos;)&apos; (string). The text to display before the
+ *      pagination links.
+ * &apos;next_page&apos; - Default is &apos;__(&apos;&amp;raquo;&apos;)&apos; (string). The text to use for the 
+ *      next page link.
+ * &apos;previous_page&apos; - Default is &apos;__(&apos;&amp;laquo&apos;)&apos; (string). The text to use for the 
+ *      previous page link.
+ * &apos;echo&apos; - Default is 1 (int). To return the code instead of echo&apos;ing, set this
+ *      to 0 (zero).
+ *
+ * @author Eric Martin &lt;eric@ericmmartin.com&gt;
+ * @copyright Copyright (c) 2009, Eric Martin
+ * @version 1.0
+ *
+ * @param array|string $args Optional. Override default arguments.
+ * @return string HTML content, if not displaying.
+ */
+
+function emm_paginate($args = null) {
+    $defaults = array(
+        &apos;page&apos; =&gt; null, &apos;pages&apos; =&gt; null, 
+        &apos;range&apos; =&gt; 3, &apos;gap&apos; =&gt; 3, &apos;anchor&apos; =&gt; 1,
+        &apos;before&apos; =&gt; &apos;&lt;div class=&quot;emm-paginate&quot;&gt;&apos;, &apos;after&apos; =&gt; &apos;&lt;/div&gt;&apos;,
+        &apos;title&apos; =&gt; __(&apos;&lt;b&gt;页码&lt;/b&gt;:&apos;),
+        &apos;nextpage&apos; =&gt; __(&apos; &amp;raquo;&apos;), &apos;previouspage&apos; =&gt; __(&apos;&amp;laquo; &apos;),
+        &apos;echo&apos; =&gt; 1
+    );
+    $r = wp_parse_args($args, $defaults);
+    extract($r, EXTR_SKIP);
+    if (!$page &amp;&amp; !$pages) {
+        global $wp_query;
+        $page = get_query_var(&apos;paged&apos;);
+        $page = !empty($page) ? intval($page) : 1;
+        $posts_per_page = intval(get_query_var(&apos;posts_per_page&apos;));
+        $pages = intval(ceil($wp_query-&gt;found_posts / $posts_per_page));
+    }
+    $output = &quot;&quot;;
+    if ($pages &gt; 1) {   
+        $output .= &quot;$before&lt;span class=&apos;emm-title&apos;&gt;$title&lt;/span&gt;&quot;;
+        $ellipsis = &quot;&lt;span class=&apos;emm-gap&apos;&gt;...&lt;/span&gt;&quot;;
+        if ($page &gt; 1 &amp;&amp; !empty($previouspage)) {
+            $output .= &quot;&lt;a href=&apos;&quot; . get_pagenum_link($page - 1) . &quot;&apos; class=&apos;emm-prev&apos;&gt;$previouspage&lt;/a&gt;&quot;;
+        }
+        $min_links = $range * 2 + 1;
+        $block_min = min($page - $range, $pages - $min_links);
+        $block_high = max($page + $range, $min_links);
+        $left_gap = (($block_min - $anchor - $gap) &gt; 0) ? true : false;
+        $right_gap = (($block_high + $anchor + $gap) &lt; $pages) ? true : false;
+        if ($left_gap &amp;&amp; !$right_gap) {
+            $output .= sprintf(&apos;%s%s%s&apos;, 
+                emm_paginate_loop(1, $anchor), 
+                $ellipsis, 
+                emm_paginate_loop($block_min, $pages, $page)
+            );
+        }
+        else if ($left_gap &amp;&amp; $right_gap) {
+            $output .= sprintf(&apos;%s%s%s%s%s&apos;, 
+                emm_paginate_loop(1, $anchor), 
+                $ellipsis, 
+                emm_paginate_loop($block_min, $block_high, $page), 
+                $ellipsis, 
+                emm_paginate_loop(($pages - $anchor + 1), $pages)
+            );
+        }
+        else if ($right_gap &amp;&amp; !$left_gap) {
+            $output .= sprintf(&apos;%s%s%s&apos;, 
+                emm_paginate_loop(1, $block_high, $page),
+                $ellipsis,
+                emm_paginate_loop(($pages - $anchor + 1), $pages)
+            );
+        }
+        else {
+            $output .= emm_paginate_loop(1, $pages, $page);
+        }
+        if ($page &lt; $pages &amp;&amp; !empty($nextpage)) {
+            $output .= &quot;&lt;a href=&apos;&quot; . get_pagenum_link($page + 1) . &quot;&apos; class=&apos;emm-next&apos;&gt;$nextpage&lt;/a&gt;&quot;;
+        }
+        $output .= $after;
+    }
+    if ($echo) {
+        echo $output;
+    }
+    return $output;
+}
+
+/**
+ * Helper function for pagination which builds the page links.
+ *
+ * @access private
+ *
+ * @author Eric Martin &lt;eric@ericmmartin.com&gt;
+ * @copyright Copyright (c) 2009, Eric Martin
+ * @version 1.0
+ *
+ * @param int $start The first link page.
+ * @param int $max The last link page.
+ * @return int $page Optional, default is 0. The current page.
+ */
+
+function emm_paginate_loop($start, $max, $page = 0) {
+    $output = &quot;&quot;;
+    for ($i = $start; $i &lt;= $max; $i++) {
+        $output .= ($page === intval($i)) 
+            ? &quot;&lt;span class=&apos;emm-page emm-current&apos;&gt;$i&lt;/span&gt;&quot; 
+            : &quot;&lt;a href=&apos;&quot; . get_pagenum_link($i) . &quot;&apos; class=&apos;emm-page&apos;&gt;$i&lt;/a&gt;&quot;;
+    }
+    return $output;
+}
+</code></pre><p>用法是将上面的这些代码添加到主题的functions.php文件中合适位置，然后在主题index.php文件中的合适位置添加以下代码：</p>
+<pre><code>&lt;?php if (function_exists(&quot;emm_paginate&quot;)) { emm_paginate();} ?&gt;
+</code></pre><p>如果还想美化一下显示效果的话，可以参考我博客主题的CSS代码：</p>
+<pre><code>.emm-paginate {padding:3px 0; overflow:hidden; clear:both;}
+.emm-paginate a { border:1px solid #ddd; color:#666; margin-right:5px; padding:3px 7px; text-align:center; text-decoration:none; }
+.emm-paginate .emm-title {color:#555; margin-right:4px;}
+.emm-paginate .emm-gap {color:#A91B33; margin-right:4px;}
+.emm-paginate a:hover, .emm-paginate a:active, .emm-paginate .emm-current {color:#fff; background:#A91B33; border:1px solid #A91B33; margin-right:5px; padding:3px 7px;}
+.emm-paginate .emm-page {}
+.emm-paginate .emm-prev, .emm-paginate .emm-next {}
+</code></pre>
+  </div>
+
+
+    <footer>
+      <p class="meta">
+        <span class="categories">
+        
+        </span>
+      </p>
+      <div class="sharing"></div>
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/2010/12/08/about-operating-system/" title="Next Post: 关于操作系统"> &laquo; 关于操作系统</a>
+        
+        
+          <a class="basic-alignment right" href="/2010/12/09/google-apps-will-delete-dot-cn-apps/" title="Next Post: 哥的CN域名注册的Google Apps悲剧了">哥的CN域名注册的Google Apps悲剧了 &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+  
+</div>
+
+        <aside class="sidebar">
+  
+    
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/07/03/my-new-smart-phone/">新入手了一部 Android 手机</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/05/08/the-netdisk-in-mainland/">国内的这些网盘服务</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/04/05/english-is-becoming-more-important/">越来越离不开英文了</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/">今年过年没回家</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2016/01/12/year-end-summary-2015/">2015岁末总结</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/12/20/attitude/">认真是一种态度</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
+        </li>
+      
+        <li class="post">
+          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  
+    
+  <section>
+    <h1>Tags</h1>
+    <span id="tag-cloud">
+      <a href="/tags/android/" style="font-size: 10px;">Android</a> <a href="/tags/chef/" style="font-size: 10px;">Chef</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/bike/" style="font-size: 10px;">bike</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/cloud/" style="font-size: 10px;">cloud</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/disk/" style="font-size: 10px;">disk</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/feed/" style="font-size: 10px;">feed</a> <a href="/tags/gmail/" style="font-size: 10px;">gmail</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/kindle/" style="font-size: 12.5px;">kindle</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/marvel/" style="font-size: 10px;">marvel</a> <a href="/tags/nanjing/" style="font-size: 10px;">nanjing</a> <a href="/tags/nat/" style="font-size: 10px;">nat</a> <a href="/tags/netdisk/" style="font-size: 10px;">netdisk</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/police/" style="font-size: 10px;">police</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/reader/" style="font-size: 10px;">reader</a> <a href="/tags/riding/" style="font-size: 10px;">riding</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/storage/" style="font-size: 10px;">storage</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/translation/" style="font-size: 10px;">translation</a> <a href="/tags/travel/" style="font-size: 12.5px;">travel</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/work/" style="font-size: 17.5px;">work</a> <a href="/tags/year/" style="font-size: 12.5px;">year</a> <a href="/tags/上瘾/" style="font-size: 10px;">上瘾</a> <a href="/tags/中文/" style="font-size: 10px;">中文</a> <a href="/tags/休假/" style="font-size: 10px;">休假</a> <a href="/tags/儿子/" style="font-size: 10px;">儿子</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/域名/" style="font-size: 10px;">域名</a> <a href="/tags/小说/" style="font-size: 10px;">小说</a> <a href="/tags/态度/" style="font-size: 10px;">态度</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/房子/" style="font-size: 10px;">房子</a> <a href="/tags/手机/" style="font-size: 15px;">手机</a> <a href="/tags/春节/" style="font-size: 12.5px;">春节</a> <a href="/tags/漫威/" style="font-size: 10px;">漫威</a> <a href="/tags/漫画/" style="font-size: 10px;">漫画</a> <a href="/tags/电影/" style="font-size: 12.5px;">电影</a> <a href="/tags/电视剧/" style="font-size: 10px;">电视剧</a> <a href="/tags/百度/" style="font-size: 10px;">百度</a> <a href="/tags/自制力/" style="font-size: 10px;">自制力</a> <a href="/tags/英文/" style="font-size: 10px;">英文</a> <a href="/tags/装修/" style="font-size: 10px;">装修</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/车子/" style="font-size: 10px;">车子</a> <a href="/tags/过年/" style="font-size: 12.5px;">过年</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a> <a href="/tags/骑行/" style="font-size: 10px;">骑行</a>
+    </span>
+  </section>
+
+
+  
+    <section>
+  <p>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5700774973519770"
+       data-ad-slot="9908477996"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </p>
+</section>
+
+  
+  
+</aside>
+
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+  <p>
+    &copy; 2017 BLOG.CHENZHIWEI.CN
+  </p>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8595324-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>
