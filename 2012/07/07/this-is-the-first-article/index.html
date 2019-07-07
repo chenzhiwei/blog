@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Octopress博客第一篇内容 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,22 +73,22 @@
 <a id="more"></a>
 <p>Octopress 博客系统的口号就是「A blogging framework for hackers」，单凭这个口号就知道这个博客系统很给力，我的这个博客系统是搭建在 Github Pages 上面。Ocotpress 博客系统是最近比较流行的静态博客系统，你可以写一篇 Markdown 格式的文本，然后 Octopress 会将这个 Markdown 文本通过一定的规则和模板生成一个静态的 HTML 页面。也就是说整个博客系统都是静态文件，不需要数据库、不需要动态语言、不需要备份、不怕攻击，从此告别对博客主机、系统、数据库的维护。</p>
 <h2 id="在Github上搭建Octopress"><a href="#在Github上搭建Octopress" class="headerlink" title="在Github上搭建Octopress"></a>在Github上搭建Octopress</h2><p>有两种方式可以在 Github 上搭建 Octopress 博客系统，分别是在 Github Pages 和 Github Project Pages 上搭建。下面我就以 Github Project Pages 为例来说一下搭建 Octopress 博客系统的步骤。</p>
-<figure class="highlight gams"><table><tr><td class="code"><pre><div class="line"><span class="symbol">$</span> sudo apt-get install ruby1<span class="number">.9</span><span class="number">.3</span> # ruby version &gt;= <span class="number">1.9</span><span class="number">.3</span></div><div class="line"><span class="symbol">$</span> sudo gem install bundler</div><div class="line"><span class="symbol">$</span> git clone git:<span class="comment">//github.com/imathis/octopress.git</span></div><div class="line"><span class="symbol">$</span> cd octopress</div><div class="line">octopress<span class="symbol">$</span> bundle install --path=.bundle</div><div class="line">octopress<span class="symbol">$</span> bundle exec rake install</div><div class="line">octopress<span class="symbol">$</span> bundle exec rake setup_github_pages # 根据提示输入git仓库地址</div><div class="line">octopress<span class="symbol">$</span> echo <span class="string">'your-domain.com'</span> &gt; source/CNAME # 不绑定域名可以跳过此项</div><div class="line">octopress<span class="symbol">$</span> bundle exec rake generate</div><div class="line">octopress<span class="symbol">$</span> bundle exec rake preview # 在浏览器中输入http:<span class="comment">//localhost:4000/来预览</span></div><div class="line">octopress<span class="symbol">$</span> bundle exec rake deploy  # 将博客更新上传到Github</div><div class="line">octopress<span class="symbol">$</span> git add .</div><div class="line">octopress<span class="symbol">$</span> git commit -m<span class="string">"blog source"</span></div><div class="line">octopress<span class="symbol">$</span> git remote add origin git@github.com:username/project.git</div><div class="line">octopress<span class="symbol">$</span> git push origin master # 以上四步是将博客源码上传到Github</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install ruby1.9.3 <span class="comment"># ruby version &gt;= 1.9.3</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo gem install bundler</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> git://github.com/imathis/octopress.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> octopress</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle install --path=.bundle</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake install</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake setup_github_pages <span class="comment"># 根据提示输入git仓库地址</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'your-domain.com'</span> &gt; <span class="built_in">source</span>/CNAME <span class="comment"># 不绑定域名可以跳过此项</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake generate</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake preview <span class="comment"># 在浏览器中输入http://localhost:4000/来预览</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake deploy  <span class="comment"># 将博客更新上传到Github</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git add .</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git commit -m<span class="string">"blog source"</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git remote add origin git@github.com:username/project.git</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git push origin master <span class="comment"># 以上四步是将博客源码上传到Github</span></span></span><br></pre></td></tr></table></figure>
 <p>注： 我是将博客系统和博客系统源码放置在同一个 git 仓库的不同分支下，你也可以将博客系统和博客系统源码放置在不同的 git 仓库中。</p>
 <h2 id="在新机器上搭建Octopress写作环境"><a href="#在新机器上搭建Octopress写作环境" class="headerlink" title="在新机器上搭建Octopress写作环境"></a>在新机器上搭建Octopress写作环境</h2><p>我是在 Github Project Pages 上面搭建的，系统环境为Ubuntu，下面以此为例来说明，假设博客源码在 master 分支，博客系统在 gh-pages 分支。</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line"><span class="variable">$ </span>sudo apt-get install ruby1.<span class="number">9.3</span> <span class="comment"># ruby version &gt;= 1.9.3</span></div><div class="line"><span class="variable">$ </span>sudo gem install bundler</div><div class="line"><span class="variable">$ </span>git clone -b master git<span class="variable">@github</span>.<span class="symbol">com:</span>username/project.git octopress</div><div class="line"><span class="variable">$ </span>cd octopress</div><div class="line">octopress<span class="variable">$ </span>bundle install --path=.bundle</div><div class="line">octopress<span class="variable">$ </span>git clone -b gh-pages git<span class="variable">@github</span>.<span class="symbol">com:</span>username/project.git _deploy</div><div class="line">octopress<span class="variable">$ </span>bundle exec rake new_post[<span class="string">'your blog title'</span>]</div><div class="line">octopress<span class="variable">$ </span>bundle exec rake generate</div><div class="line">octopress<span class="variable">$ </span>bundle exec rake preview</div><div class="line">octopress<span class="variable">$ </span>bundle exec rake deploy <span class="comment"># 将博客更新上传到Github</span></div><div class="line">octopress<span class="variable">$ </span>git add .</div><div class="line">octopress<span class="variable">$ </span>git commit -m<span class="string">"some info"</span></div><div class="line">octopress<span class="variable">$ </span>git push -u origin master <span class="comment"># 将博客源码更新上传到Github</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install ruby1.9.3 <span class="comment"># ruby version &gt;= 1.9.3</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo gem install bundler</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> -b master git@github.com:username/project.git octopress</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> octopress</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle install --path=.bundle</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git <span class="built_in">clone</span> -b gh-pages git@github.com:username/project.git _deploy</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake new_post[<span class="string">'your blog title'</span>]</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake generate</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake preview</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> bundle <span class="built_in">exec</span> rake deploy <span class="comment"># 将博客更新上传到Github</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git add .</span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git commit -m<span class="string">"some info"</span></span></span><br><span class="line"><span class="meta">octopress$</span><span class="bash"> git push -u origin master <span class="comment"># 将博客源码更新上传到Github</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><p>Markdown 的目标是实现「易读易写」。简单来说，Markdown 是一个兼顾可读性与易用性的轻量级标记体系。Markdown 并不追求大而全，它只关心 HTML 里最常用的几个标记，对于一些不常用的标记它允许直接将 HTML 标记插入文本。</p>
 <p>Markdown语法不算太难，记住几个关键的特殊字符用法就行了，用到什么查什么。关于Markdown语法的更多介绍可以参考以下内容：</p>
 <ul>
-<li><p>Markdown语法快速入门 <a href="http://wowubuntu.com/markdown/basic.html" target="_blank" rel="external">http://wowubuntu.com/markdown/basic.html</a></p>
+<li><p>Markdown语法快速入门 <a href="http://wowubuntu.com/markdown/basic.html" target="_blank" rel="noopener">http://wowubuntu.com/markdown/basic.html</a></p>
 </li>
-<li><p>Markdown语法详细说明 <a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a></p>
+<li><p>Markdown语法详细说明 <a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">http://wowubuntu.com/markdown/</a></p>
 </li>
 </ul>
 <h2 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h2><p>Octopress 主要是由 Git 和 Ruby 来驱动的，在 Windows 系统下使用的话可能比较折腾。我一直都使用 Ubuntu 系统，所以对我来说这要比在浏览器打开博客后台进行书写博客更加方便。</p>
 <ul>
-<li>Octopress安装文档： <a href="http://octopress.org/docs/setup/" target="_blank" rel="external">http://octopress.org/docs/setup/</a></li>
-<li>Octopress第三插件： <a href="https://github.com/imathis/octopress/wiki/3rd-party-plugins" target="_blank" rel="external">https://github.com/imathis/octopress/wiki/3rd-party-plugins</a></li>
+<li>Octopress安装文档： <a href="http://octopress.org/docs/setup/" target="_blank" rel="noopener">http://octopress.org/docs/setup/</a></li>
+<li>Octopress第三插件： <a href="https://github.com/imathis/octopress/wiki/3rd-party-plugins" target="_blank" rel="noopener">https://github.com/imathis/octopress/wiki/3rd-party-plugins</a></li>
 </ul>
 
   </div>
@@ -103,10 +103,10 @@
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2012/03/18/working-in-beijing-about-one-year/" title="Next Post: 在帝都工作一年了"> &laquo; 在帝都工作一年了</a>
+          <a class="basic-alignment left" href="/2012/07/08/i-dont-know-and-you-dont-know-too/" title="Next Post: 其实，我不懂，你们也不懂"> &laquo; 其实，我不懂，你们也不懂</a>
         
         
-          <a class="basic-alignment right" href="/2012/07/08/i-dont-know-and-you-dont-know-too/" title="Next Post: 其实，我不懂，你们也不懂">其实，我不懂，你们也不懂 &raquo;</a>
+          <a class="basic-alignment right" href="/2012/03/18/working-in-beijing-about-one-year/" title="Next Post: 在帝都工作一年了">在帝都工作一年了 &raquo;</a>
         
       </p>
     </footer>
@@ -142,6 +142,10 @@
     <ul id="recent_posts">
       
         <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
+      
+        <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
         </li>
       
@@ -171,10 +175,6 @@
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -215,7 +215,7 @@
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

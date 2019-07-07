@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.chenzhiwei.cn/2019/07/07/archive-blog/</loc>
+    
+    <lastmod>2019-07-07T05:52:28.974Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chenzhiwei.cn/about/index.html</loc>
     
     <lastmod>2017-04-04T12:51:27.000Z</lastmod>
@@ -9,14 +16,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2008/12/27/summer-and-spring/</loc>
+    <loc>https://blog.chenzhiwei.cn/2008/10/19/baidu-youa/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/02/22/nokia-phone/</loc>
+    <loc>https://blog.chenzhiwei.cn/2008/12/27/summer-and-spring/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -30,7 +37,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/02/20/qq-product/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/02/22/nokia-phone/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -44,27 +51,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/03/11/use-ubuntu-linux/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2009/03/15/adjust-my-blog-theme/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2009/03/21/my-first-earning/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2009/03/07/fake-mail/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -72,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/03/24/youtube-was-blocked-in-china/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/02/20/qq-product/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -86,14 +72,28 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/04/04/portable-ubuntu/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/03/15/adjust-my-blog-theme/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/04/05/cannot-modify-header/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/03/11/use-ubuntu-linux/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/03/21/my-first-earning/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/03/30/i-like-google-products/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -101,6 +101,20 @@
   
   <url>
     <loc>https://blog.chenzhiwei.cn/2009/03/22/use-rss-reader/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/04/04/portable-ubuntu/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/03/24/youtube-was-blocked-in-china/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -121,7 +135,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/03/30/i-like-google-products/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/04/05/cannot-modify-header/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/04/24/blog-auto-reply/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -136,13 +157,6 @@
   
   <url>
     <loc>https://blog.chenzhiwei.cn/2009/04/26/baidu-union-google-adsense/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2009/04/24/blog-auto-reply/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -184,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/06/03/build-website/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/07/22/gae-for-java/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/07/14/unix-center/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/06/03/build-website/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -205,28 +219,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/07/22/gae-for-java/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2009/07/24/desc/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2009/08/04/register-com-doamin/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2009/07/25/blog-that-support-bind-domain/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -240,14 +233,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/08/08/bei-an/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/07/25/blog-that-support-bind-domain/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/08/18/feedsky-and-feedburner/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/08/04/register-com-doamin/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -261,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/08/17/new-things/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/08/08/bei-an/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -275,6 +268,13 @@
   </url>
   
   <url>
+    <loc>https://blog.chenzhiwei.cn/2009/08/17/new-things/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chenzhiwei.cn/2009/09/05/update-blog-sina-miniblog-yahoo-meme/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -282,14 +282,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/10/17/google-voice-wave-china-internet/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2009/10/23/rename-by-blog-again/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/08/18/feedsky-and-feedburner/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -310,7 +303,21 @@
   </url>
   
   <url>
+    <loc>https://blog.chenzhiwei.cn/2009/10/23/rename-by-blog-again/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chenzhiwei.cn/2009/10/24/windows-right-click/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/10/17/google-voice-wave-china-internet/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -331,13 +338,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/12/05/the-cheater/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2009/11/07/change-blog-space/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -345,7 +345,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2009/12/08/description-of-several-disk-scheduling/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/12/05/the-cheater/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -387,14 +387,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/03/28/android-hellogallery-app/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/03/21/install-ubuntu-under-windows/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/03/21/install-ubuntu-under-windows/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/03/28/android-hellogallery-app/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -422,13 +422,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/06/04/c-static-keyword/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2010/05/30/internet-real-name/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -436,7 +429,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/06/10/add-twitter-gadget-on-your-blog/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/06/04/c-static-keyword/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -450,14 +443,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/07/28/linux-shell-study-notes-part-4/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2010/07/28/linux-shell-study-notes-part-3/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/06/10/add-twitter-gadget-on-your-blog/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -478,14 +464,21 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/08/13/google-android-operating-system/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/07/28/linux-shell-study-notes-part-3/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/09/17/recent-things-about-work/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/07/28/linux-shell-study-notes-part-4/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2010/08/13/google-android-operating-system/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -506,6 +499,13 @@
   </url>
   
   <url>
+    <loc>https://blog.chenzhiwei.cn/2010/09/17/recent-things-about-work/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chenzhiwei.cn/2010/10/14/install-lamp-on-ubuntu/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -513,14 +513,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/10/26/lets-block-360se/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2008/10/19/baidu-youa/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/10/16/ubuntu-and-winxp-repair-grub2/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -534,7 +527,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/11/19/shell-script-study-notes-2/</loc>
+    <loc>https://blog.chenzhiwei.cn/2010/10/26/lets-block-360se/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -549,6 +542,13 @@
   
   <url>
     <loc>https://blog.chenzhiwei.cn/2010/11/17/shell-script-study-notes/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2010/11/19/shell-script-study-notes-2/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -611,13 +611,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/12/17/detailed-explanation-of-hamming-code/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2010/12/10/the-basic-structure-of-linux-kernel/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -626,6 +619,13 @@
   
   <url>
     <loc>https://blog.chenzhiwei.cn/2010/12/16/usage-of-assert-lib/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2010/12/17/detailed-explanation-of-hamming-code/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -660,13 +660,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/03/16/internship-of-my-senior-year/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2011/01/29/happy-spring-festival-2011/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -674,7 +667,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/03/17/some-words-related-to-compute-science/</loc>
+    <loc>https://blog.chenzhiwei.cn/2011/03/16/internship-of-my-senior-year/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -695,13 +688,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/07/10/use-pptp-vpn-under-ubuntu11-04/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2011/05/25/what-is-haproxy/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -716,14 +702,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/07/13/one-apache-hosts-two-site-with-different-port/</loc>
+    <loc>https://blog.chenzhiwei.cn/2011/07/10/use-pptp-vpn-under-ubuntu11-04/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/10/22/write-write/</loc>
+    <loc>https://blog.chenzhiwei.cn/2011/07/13/one-apache-hosts-two-site-with-different-port/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -737,14 +723,21 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/11/18/old-version-php-support-json/</loc>
+    <loc>https://blog.chenzhiwei.cn/2011/10/01/how-to-use-gpg/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2011/10/01/how-to-use-gpg/</loc>
+    <loc>https://blog.chenzhiwei.cn/2011/10/22/write-write/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2011/11/18/old-version-php-support-json/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -793,21 +786,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2012/11/13/http-request-method-and-status-code/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2012/10/26/chuan-zang-xing-of-2012/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2012/10/27/the-book-and-the-sword/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2012/11/13/http-request-method-and-status-code/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -828,14 +814,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2013/02/19/chinese-new-year/</loc>
+    <loc>https://blog.chenzhiwei.cn/2013/02/03/these-days/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2013/02/03/these-days/</loc>
+    <loc>https://blog.chenzhiwei.cn/2013/02/19/chinese-new-year/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -863,20 +849,6 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2014/08/16/a-very-difficult-decision/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2013/09/07/cycling-from-sichuan-to-tibet-one-year-later/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2013/12/25/year-end-summary/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -884,7 +856,21 @@
   </url>
   
   <url>
+    <loc>https://blog.chenzhiwei.cn/2014/08/16/a-very-difficult-decision/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chenzhiwei.cn/2015/01/18/two-chrome-extensions/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2015/01/25/year-end-summary-2014/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -905,7 +891,14 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2015/01/25/year-end-summary-2014/</loc>
+    <loc>https://blog.chenzhiwei.cn/2015/03/26/how-to-do-what-you-have-to-do-when-you-dont-feel-like-doing-it/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2015/03/30/why-not-allowed-to-add-cname-record-to-a-root-domain/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -947,21 +940,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2015/03/26/how-to-do-what-you-have-to-do-when-you-dont-feel-like-doing-it/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.chenzhiwei.cn/2015/08/30/love-marvel-comics/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2015/03/30/why-not-allowed-to-add-cname-record-to-a-root-domain/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -989,6 +968,13 @@
   </url>
   
   <url>
+    <loc>https://blog.chenzhiwei.cn/2016/01/12/year-end-summary-2015/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chenzhiwei.cn/2016/02/22/i-did-not-return-home-at-chinese-new-year-holiday/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
@@ -997,13 +983,6 @@
   
   <url>
     <loc>https://blog.chenzhiwei.cn/2016/04/05/english-is-becoming-more-important/</loc>
-    
-    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chenzhiwei.cn/2016/01/12/year-end-summary-2015/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     
@@ -1031,7 +1010,35 @@
   </url>
   
   <url>
-    <loc>https://blog.chenzhiwei.cn/2010/10/16/ubuntu-and-winxp-repair-grub2/</loc>
+    <loc>https://blog.chenzhiwei.cn/2009/07/14/unix-center/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2009/12/08/description-of-several-disk-scheduling/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2011/03/17/some-words-related-to-compute-science/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2012/10/26/chuan-zang-xing-of-2012/</loc>
+    
+    <lastmod>2017-04-04T12:23:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.chenzhiwei.cn/2013/09/07/cycling-from-sichuan-to-tibet-one-year-later/</loc>
     
     <lastmod>2017-04-04T12:23:34.000Z</lastmod>
     

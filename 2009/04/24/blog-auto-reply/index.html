@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>wordpress的评论邮件回复功能 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,7 +73,7 @@
 <a id="more"></a>
 <p>编辑WP Thread Comment 插件的代码，找到这一行代码，</p>
 <pre><code>$wp_email = &apos;no-reply@&apos; . preg_replace(&apos;#^www\.#&apos;, &apos;&apos;,  strtolower($_SERVER[&apos;SERVER_NAME&apos;]));
-</code></pre><p>然后将这一行代码做以下修改，$wp_email = ‘<em>@XX.com’; 其中 </em>@XX.com 就是你想要的发件人地址。改好后自己测试一下吧。</p>
+</code></pre><p>然后将这一行代码做以下修改，$wp_email = <a href="mailto:&#39;*@XX.com" target="_blank" rel="noopener">&#39;*@XX.com</a>‘; 其中 <a href="mailto:*@XX.com" target="_blank" rel="noopener">*@XX.com</a> 就是你想要的发件人地址。改好后自己测试一下吧。</p>
 <p>update: 更新一下，新版的wordpress后台已经有嵌套评论了(wordpress后台-&gt;设置-&gt;讨论-&gt;其他评论设置-&gt;允许嵌套N条评论)，所以这个thread comment插件一般也就用不上了，可以使用<a href="http://fairyfish.net/2008/11/03/comment-reply-notification/" target="_blank">comment-reply-notification</a>这个插件来代替，安装这个插件并激活后可以到wordpress后台设置那里来对该插件做详细设置。具体设置方法可以参考<a href="http://fairyfish.net/2008/11/03/comment-reply-notification/" target="_blank">插件页面</a>。另外，自定义邮箱地址在我的主机上不能使用。</p>
 
   </div>
@@ -88,10 +88,10 @@
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2009/04/10/you-web-translation/" title="Next Post: 有道也出网页翻译了"> &laquo; 有道也出网页翻译了</a>
+          <a class="basic-alignment left" href="/2009/04/25/about-my-blog/" title="Next Post: 关于我博客的流量"> &laquo; 关于我博客的流量</a>
         
         
-          <a class="basic-alignment right" href="/2009/04/25/about-my-blog/" title="Next Post: 关于我博客的流量">关于我博客的流量 &raquo;</a>
+          <a class="basic-alignment right" href="/2009/04/10/you-web-translation/" title="Next Post: 有道也出网页翻译了">有道也出网页翻译了 &raquo;</a>
         
       </p>
     </footer>
@@ -105,6 +105,10 @@
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -136,10 +140,6 @@
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -180,7 +180,7 @@
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>GAE for Java 试用手记 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,12 +73,12 @@
 <a id="more"></a>
 <p>下面我就介绍下怎么使用GAE for Java：</p>
 <p>1.首先，你得有个GAE帐户号，即web-search.appspot.com中的第一个字段web-search。怎么申请我就不多说了，网上有N多方法。</p>
-<p>2.进入到这个页面来安装运行环境：<a href="http://code.google.com/appengine/docs/java/gettingstarted/installing.html" target="_blank" rel="external">http://code.google.com/appengine/docs/java/gettingstarted/installing.html</a> </p>
+<p>2.进入到这个页面来安装运行环境：<a href="http://code.google.com/appengine/docs/java/gettingstarted/installing.html" target="_blank" rel="noopener">http://code.google.com/appengine/docs/java/gettingstarted/installing.html</a> </p>
 <p>这里我给出我用的两个程序的下载地址：</p>
-<p>JDK1.6下载地址: <a href="http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe" target="_blank" rel="external">http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe</a></p>
-<p>eclipse3.4.2: <a href="http://mirror.bjtu.edu.cn/eclipse/eclipse/downloads/drops/R-3.4.2-200902111700/eclipse-SDK-3.4.2-win32.zip" target="_blank" rel="external">http://mirror.bjtu.edu.cn/eclipse/eclipse/downloads/drops/R-3.4.2-200902111700/eclipse-SDK-3.4.2-win32.zip</a></p>
+<p>JDK1.6下载地址: <a href="http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe" target="_blank" rel="noopener">http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe</a></p>
+<p>eclipse3.4.2: <a href="http://mirror.bjtu.edu.cn/eclipse/eclipse/downloads/drops/R-3.4.2-200902111700/eclipse-SDK-3.4.2-win32.zip" target="_blank" rel="noopener">http://mirror.bjtu.edu.cn/eclipse/eclipse/downloads/drops/R-3.4.2-200902111700/eclipse-SDK-3.4.2-win32.zip</a></p>
 <p>当然了，你也要根据官方给出的最新版本来作参考。</p>
-<p>3.先安装JDK，再安装eclipse。打开eclipse，点击下图中的help-&gt;Software Updates,再在新窗口中选择Available Software选项卡，点击最右边的Add Site会出现下图，然后输入<a href="http://dl.google.com/eclipse/plugin/3.4" target="_blank" rel="external">http://dl.google.com/eclipse/plugin/3.4</a> 点击确定，然后再窗口中会多出一行，Google Update Site for eclipse 3.4 选中然后再点击窗口右上角的Install按钮。接着安装，安装完后新建一个Web Application Project，输入项目名和包名，然后把Use Google Web Toolkit去掉,单击OK。</p>
+<p>3.先安装JDK，再安装eclipse。打开eclipse，点击下图中的help-&gt;Software Updates,再在新窗口中选择Available Software选项卡，点击最右边的Add Site会出现下图，然后输入<a href="http://dl.google.com/eclipse/plugin/3.4" target="_blank" rel="noopener">http://dl.google.com/eclipse/plugin/3.4</a> 点击确定，然后再窗口中会多出一行，Google Update Site for eclipse 3.4 选中然后再点击窗口右上角的Install按钮。接着安装，安装完后新建一个Web Application Project，输入项目名和包名，然后把Use Google Web Toolkit去掉,单击OK。</p>
 <p>4.这样一个完整的GAE for Java项目就算是创建好了。不过这个项目可能会不支持JSP文件，如果不支持JSP文件，你就按以下操作，在eclipse下进入 Window-&gt;Preferences-&gt;java-&gt;Installed JREs，如果出现一个JRE的话，就单击它，并选edit,添加路径时要选择JDK下的jre,我的JDK安装在了这里C:\Program Files\Java\jdk1.6.0_10\jre，选这个路径，然后finish。好了，这时你的GAE项目已经支持JSP文件了。</p>
 <p>5.接着，你就可以写自己的GAE for Java小应用了。我写了个简单的搜索我博客的应用：<a href="http://so.chenzhiwei.cn/" target="_blank">http://so.chenzhiwei.cn/</a> 有兴趣的话，你还可以写很应用，比如BLog，Chatting Room之类的应用。</p>
 
@@ -94,10 +94,10 @@
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2009/07/14/unix-center/" title="Next Post: Unix-Center.Net需要您的帮助"> &laquo; Unix-Center.Net需要您的帮助</a>
+          <a class="basic-alignment left" href="/2009/07/22/google-short-url-service/" title="Next Post: Google Short Links网址缩短服务"> &laquo; Google Short Links网址缩短服务</a>
         
         
-          <a class="basic-alignment right" href="/2009/07/22/google-short-url-service/" title="Next Post: Google Short Links网址缩短服务">Google Short Links网址缩短服务 &raquo;</a>
+          <a class="basic-alignment right" href="/2009/07/14/unix-center/" title="Next Post: Unix-Center.Net需要您的帮助">Unix-Center.Net需要您的帮助 &raquo;</a>
         
       </p>
     </footer>
@@ -111,6 +111,10 @@
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -142,10 +146,6 @@
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -186,7 +186,7 @@
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

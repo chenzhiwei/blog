@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>linux shell学习笔记(一) - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,15 +109,15 @@ testbeijing
 <li>“*”符号</li>
 </ol>
 <p>“<em>”符号用于匹配字符串中0次或多次出现的字符，如：s</em>可以匹配shell、shanghai等。在使用“<em>”符号时要注意一点，在匹配文件名与路径名时，“.”符号与“\”必须显示匹配，如：</em>test不能匹配“.httest”文件，而要用“.<em>test”来匹配，同学“/home/test”需要用”/</em>/test”来匹配。</p>
-<ol>
+<ol start="2">
 <li>“?”符号</li>
 </ol>
 <p>“?”符号仅匹配对应位置的一个字符。如：m?ke可匹配”mike”、”make”等，但不能匹配”mooke”。</p>
-<ol>
+<ol start="3">
 <li>“[]“符号</li>
 </ol>
 <p>“[]“称号的作用是匹配该字符组所限定范围内的任何一个字符，方括号中的字符可以由直接级出的字符组成，如：[adehk]；也可以由表示限定范围的起始字符和终止字符及中间的连接字符”-”组成。如：[a-zA-H]、[0-9]等。</p>
-<ol>
+<ol start="4">
 <li>“!”符号</li>
 </ol>
 <p>“!”符号是与”[]“符号配合使用的，”!”的作用是匹配不在方括号中列出的字符。例如：t[!a-h]st，则可表示tyst、t9st，但不能表示test。</p>
@@ -213,10 +213,10 @@ shanghai shandong
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2010/06/26/recomend-7zip/" title="Next Post: 推荐使用7-Zip软件进行解压缩"> &laquo; 推荐使用7-Zip软件进行解压缩</a>
+          <a class="basic-alignment left" href="/2010/07/25/linux-shell-study-notes-part-2/" title="Next Post: linux shell学习笔记(二)"> &laquo; linux shell学习笔记(二)</a>
         
         
-          <a class="basic-alignment right" href="/2010/07/25/linux-shell-study-notes-part-2/" title="Next Post: linux shell学习笔记(二)">linux shell学习笔记(二) &raquo;</a>
+          <a class="basic-alignment right" href="/2010/06/26/recomend-7zip/" title="Next Post: 推荐使用7-Zip软件进行解压缩">推荐使用7-Zip软件进行解压缩 &raquo;</a>
         
       </p>
     </footer>
@@ -230,6 +230,10 @@ shanghai shandong
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -261,10 +265,6 @@ shanghai shandong
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -305,7 +305,7 @@ shanghai shandong
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

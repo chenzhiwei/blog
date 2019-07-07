@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>让旧版本的PHP支持json - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
     <p>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式，它可以将 JavaScript 对象中表示的一组数据转换为字符串，然后就可以在函数之间轻松地传递这个字符串，或者在异步应用程序中将字符串从 Web 客户机传递给服务器端程序。这个字符串看起来有点儿古怪，但是 JavaScript 很容易解释它，而且 JSON 可以表示比名称 / 值对更复杂的结构。例如，可以表示数组和复杂的对象，而不仅仅是键和值的简单列表。</p>
 <a id="more"></a>
 <p>在旧版本的php中是默认不支持json的，这就需要我们编译一个json的php扩展，方法如下：</p>
-<p>1.下载源码： <a href="http://pecl.php.net/package/json" target="_blank" rel="external">http://pecl.php.net/package/json</a></p>
+<p>1.下载源码： <a href="http://pecl.php.net/package/json" target="_blank" rel="noopener">http://pecl.php.net/package/json</a></p>
 <p>2.解压</p>
 <p>3.依次运行 phpize ; ./configure; make; make install</p>
 <p>4.在php配置文件php.ini上加上extension=”json.so”</p>
@@ -90,10 +90,10 @@
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2011/10/22/write-write/" title="Next Post: 随写"> &laquo; 随写</a>
+          <a class="basic-alignment left" href="/2011/11/28/do-not-want-learn-python-and-perl/" title="Next Post: 不打算学python和perl"> &laquo; 不打算学python和perl</a>
         
         
-          <a class="basic-alignment right" href="/2011/11/28/do-not-want-learn-python-and-perl/" title="Next Post: 不打算学python和perl">不打算学python和perl &raquo;</a>
+          <a class="basic-alignment right" href="/2011/10/22/write-write/" title="Next Post: 随写">随写 &raquo;</a>
         
       </p>
     </footer>
@@ -107,6 +107,10 @@
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -138,10 +142,6 @@
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -182,7 +182,7 @@
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

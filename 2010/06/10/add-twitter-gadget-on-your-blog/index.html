@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>博客上添加twitter挂件的方法-超级简单 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +70,7 @@
 
   <div class="entry-content">
     <p>最近一不小心发现原来在博客上添加twitter挂件很简单。只需要一个twitter api  地址，几行代码就可以了，现在贴出来与各位同学分享。以下是相关说明。</p>
-<p>假设你的twitter api地址是：<a href="http://abc.com/api/" target="_blank" rel="external">http://abc.com/api/</a></p>
+<p>假设你的twitter api地址是：<a href="http://abc.com/api/" target="_blank" rel="noopener">http://abc.com/api/</a></p>
 <p>只需要将以下代码第六行中的twitter_username改为你自己的twitter用户名，其中的count=2是说明只显示最新的两条推。你可以根据自己的需求而适当更改。将这几行代码加到<head></head>之间，当然，你也可以加到主题的function.php或其他.php文件里面。看完以下代码后你会发现，只需稍做修改就可以运用到静态网页中了。</p>
 <pre><code>&lt;?php
 function twitter_show()
@@ -89,7 +89,7 @@ function twitter_show()
     &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre><p>到此，博客上添加twitter挂件功能就实现了，非常简单。</p>
-<p>下面给出一个测试例子：index.php文件，将该文件中的<a href="http://abc.com/api/改为你自己的twitter" target="_blank" rel="external">http://abc.com/api/改为你自己的twitter</a> api地址，然后运行该文件后就会显示两条tweets。</p>
+<p>下面给出一个测试例子：index.php文件，将该文件中的<a href="http://abc.com/api/改为你自己的twitter" target="_blank" rel="noopener">http://abc.com/api/改为你自己的twitter</a> api地址，然后运行该文件后就会显示两条tweets。</p>
 <pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; &gt;
 &lt;head profile=&quot;http://gmpg.org/xfn/11&quot;&gt;
 &lt;title&gt;show tweets&lt;/title&gt;
@@ -123,10 +123,10 @@ function twitter_show()
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2010/06/04/c-static-keyword/" title="Next Post: C语言中的static关键字"> &laquo; C语言中的static关键字</a>
+          <a class="basic-alignment left" href="/2010/06/26/recomend-7zip/" title="Next Post: 推荐使用7-Zip软件进行解压缩"> &laquo; 推荐使用7-Zip软件进行解压缩</a>
         
         
-          <a class="basic-alignment right" href="/2010/06/26/recomend-7zip/" title="Next Post: 推荐使用7-Zip软件进行解压缩">推荐使用7-Zip软件进行解压缩 &raquo;</a>
+          <a class="basic-alignment right" href="/2010/06/04/c-static-keyword/" title="Next Post: C语言中的static关键字">C语言中的static关键字 &raquo;</a>
         
       </p>
     </footer>
@@ -140,6 +140,10 @@ function twitter_show()
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -171,10 +175,6 @@ function twitter_show()
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -215,7 +215,7 @@ function twitter_show()
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

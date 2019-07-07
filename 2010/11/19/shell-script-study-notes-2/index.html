@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>shell 脚本学习之判断条件 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,23 +81,23 @@
 <li>某文件名的类型检测（存在与否及文件类型）（test -e filename）</li>
 </ol>
 <p>-e :该“文件名”是否存在。<br>-d :该文件名是否为目录。<br>-f  :该文件名是否为普通文件。<br>b,c,S,p,L分别指的是块设备、字符设备、套接字文件、管道文件及链接文件。</p>
-<ol>
+<ol start="2">
 <li>文件权限的检测（test -r filename）</li>
 </ol>
 <p>-r :该文件是否具有可读属性<br>-w :该文件是否具有可写属性<br>-x :该文件是否具有可执行属性<br>-s  :该文件是否为非空白文件</p>
-<ol>
+<ol start="3">
 <li>比较两个文件（test file_a nt file_b）</li>
 </ol>
 <p>-nt :文件file_a是否比file_b新<br>-ot :文件file_a是否比file_b旧<br>-ef :判断两个文件是否为同一文件，可用于判断硬连接。（主要判断两个文件是否均指向同一个inode）</p>
-<ol>
+<ol start="4">
 <li>两个整数之间的判断（test n1 -eq n2）</li>
 </ol>
 <p>-eq :两个数相等（equal）<br>-ne :两个数不相等（not equal）<br>-gt :前者大于后者（greater than）<br>-lt :前者小于后者（less than）<br>-ge :前者大于等后者<br>-le :前者小于等于后者</p>
-<ol>
+<ol start="5">
 <li>判断字符串</li>
 </ol>
 <p>test -z str :判断字符串是否为空，若为空则回传true<br>test -n str :判断字符串是否为非空，左路为非空则回传true（-n亦可省略）<br>test str_a = str_b及test str_a != str_b:判断两字条串是否相等及不相等。</p>
-<ol>
+<ol start="6">
 <li>多重判断条件（test -r file -a -w file）</li>
 </ol>
 <p>-a :and，当两个条件都满足时才回传true，即file具有读和写权限<br>-o : or，当两个条件满足其一时即回传true<br>-! :条件求反，test -! -x file，即当file不具有执行权限时才回传true</p>
@@ -139,10 +139,10 @@ echo &quot;I don&apos;t know what is your choice&quot; &amp;&amp; exit 0
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2010/11/17/shell-script-study-notes/" title="Next Post: shell脚本学习"> &laquo; shell脚本学习</a>
+          <a class="basic-alignment left" href="/2010/11/28/shell-script-study-notes-shell/" title="Next Post: 几个简单的shell脚本"> &laquo; 几个简单的shell脚本</a>
         
         
-          <a class="basic-alignment right" href="/2010/11/28/shell-script-study-notes-shell/" title="Next Post: 几个简单的shell脚本">几个简单的shell脚本 &raquo;</a>
+          <a class="basic-alignment right" href="/2010/11/17/shell-script-study-notes/" title="Next Post: shell脚本学习">shell脚本学习 &raquo;</a>
         
       </p>
     </footer>
@@ -156,6 +156,10 @@ echo &quot;I don&apos;t know what is your choice&quot; &amp;&amp; exit 0
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -187,10 +191,6 @@ echo &quot;I don&apos;t know what is your choice&quot; &amp;&amp; exit 0
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -231,7 +231,7 @@ echo &quot;I don&apos;t know what is your choice&quot; &amp;&amp; exit 0
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

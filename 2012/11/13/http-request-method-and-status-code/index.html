@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>HTTP的请求方法和响应状态码 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,9 +80,9 @@
 <p>TRACE方法是请求服务器回送收到的请求信息，主要用于测试或诊断。</p>
 <p>CONNECT方法是保留方法，将来使用。</p>
 <p>注：HTTP/1.0只有三个请求方法，即GET、HEAD、POST。其他几个方法是HTTP/1.1新加上去的。</p>
-<p>HTTP/1.0的请求方法文档：<a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#Method" target="_blank" rel="external">http://www.w3.org/Protocols/HTTP/1.0/spec.html#Method</a><br>HTTP/1.1的请求方法文档：<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1" target="_blank" rel="external">http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1</a></p>
+<p>HTTP/1.0的请求方法文档：<a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#Method" target="_blank" rel="noopener">http://www.w3.org/Protocols/HTTP/1.0/spec.html#Method</a><br>HTTP/1.1的请求方法文档：<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1" target="_blank" rel="noopener">http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1</a></p>
 <h2 id="WebDAV协议的请求方法"><a href="#WebDAV协议的请求方法" class="headerlink" title="WebDAV协议的请求方法"></a>WebDAV协议的请求方法</h2><p>WebDAV是Web Distributed Authoring and Versioning的缩写，可以认为是HTTP协议的扩展，WebDAV将HTTP从一个只读的协议变成了一个可以读写的协议。</p>
-<p>WebDAV的方法比较多，有PROPFIND、PROPPATCH、MKCOL、COPY、MOVE、LOCK、UNLOCK等方法。具体解释这里就不多说了，可以参考WebDAV的文档：<a href="http://www.webdav.org/specs/rfc4918.html" target="_blank" rel="external">http://www.webdav.org/specs/rfc4918.html</a></p>
+<p>WebDAV的方法比较多，有PROPFIND、PROPPATCH、MKCOL、COPY、MOVE、LOCK、UNLOCK等方法。具体解释这里就不多说了，可以参考WebDAV的文档：<a href="http://www.webdav.org/specs/rfc4918.html" target="_blank" rel="noopener">http://www.webdav.org/specs/rfc4918.html</a></p>
 <h2 id="HTTP协议的状态码"><a href="#HTTP协议的状态码" class="headerlink" title="HTTP协议的状态码"></a>HTTP协议的状态码</h2><h3 id="Information-1xx"><a href="#Information-1xx" class="headerlink" title="Information 1xx"></a>Information 1xx</h3><p>临时响应，表示临时响应并需要请求者继续执行操作的状态代码。</p>
 <p><strong>100 Continue</strong><br>继续，表示请求者应当继续提出请求，服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。</p>
 <p><strong>101 Switching Protocols</strong><br>切换协议，表示请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
@@ -129,7 +129,7 @@
 <p><strong>503 Service Unavailable</strong><br>服务不可用，表示服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态。</p>
 <p><strong>504 Gateway Timeout</strong><br>网关超时，表示服务器作为网关或代理，但是没有及时从上游服务器收到请求。</p>
 <p><strong>505 HTTP Version Not Supported</strong><br>不支持的HTTP版本，表示服务器不支持请求中所用的 HTTP 协议版本。</p>
-<p>HTTP/1.0的响应状态码文档：<a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#Status-Codes" target="_blank" rel="external">http://www.w3.org/Protocols/HTTP/1.0/spec.html#Status-Codes</a><br>HTTP/1.1的响应状态码文档：<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="external">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a><br>HTTP协议详解（中文），很经典：<a href="http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html" target="_blank" rel="external">http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html</a><br>HTTP协议状态码详解：<a href="http://blog.webshuo.com/2011/02/17/http%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3%EF%BC%88http-status-code%EF%BC%89/" target="_blank" rel="external">http://blog.webshuo.com/2011/02/17/http%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3%EF%BC%88http-status-code%EF%BC%89/</a></p>
+<p>HTTP/1.0的响应状态码文档：<a href="http://www.w3.org/Protocols/HTTP/1.0/spec.html#Status-Codes" target="_blank" rel="noopener">http://www.w3.org/Protocols/HTTP/1.0/spec.html#Status-Codes</a><br>HTTP/1.1的响应状态码文档：<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="noopener">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a><br>HTTP协议详解（中文），很经典：<a href="http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html" target="_blank" rel="noopener">http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html</a><br>HTTP协议状态码详解：<a href="http://blog.webshuo.com/2011/02/17/http%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3%EF%BC%88http-status-code%EF%BC%89/" target="_blank" rel="noopener">http://blog.webshuo.com/2011/02/17/http%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3%EF%BC%88http-status-code%EF%BC%89/</a></p>
 <p>UPDATE: 2012-11-26<br>虽然我刚写完了些内容，但是别人问到时其中的部分状态码时我还是不知道怎么回事。像我这种不求甚解的学习方式是不行的，以后得好好的深入学习。</p>
 
   </div>
@@ -148,10 +148,10 @@
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2012/10/27/the-book-and-the-sword/" title="Next Post: 我读书剑恩仇录"> &laquo; 我读书剑恩仇录</a>
+          <a class="basic-alignment left" href="/2012/12/31/2012-this-is-my-year/" title="Next Post: 2012岁末总结"> &laquo; 2012岁末总结</a>
         
         
-          <a class="basic-alignment right" href="/2012/12/31/2012-this-is-my-year/" title="Next Post: 2012岁末总结">2012岁末总结 &raquo;</a>
+          <a class="basic-alignment right" href="/2012/10/27/the-book-and-the-sword/" title="Next Post: 我读书剑恩仇录">我读书剑恩仇录 &raquo;</a>
         
       </p>
     </footer>
@@ -187,6 +187,10 @@
     <ul id="recent_posts">
       
         <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
+      
+        <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
         </li>
       
@@ -216,10 +220,6 @@
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -260,7 +260,7 @@
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

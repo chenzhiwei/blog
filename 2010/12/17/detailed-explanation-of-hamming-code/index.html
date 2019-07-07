@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>海明码详解 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
 <p>注：奇偶较验只能知道数据在传输过程中有没有出错，而不能发现具体是哪位出错。海明码可以发现出数据在传输过程中哪一位出错。但有一点必须明白，奇偶较验和海明码较验都是只能较验一位出错的情况。</p>
 <p>假设数据位有m位，如何设定校验位k的长度才能满足纠正一位错误的要求呢?我们这里做一个简单的推导。k位的校验码可以有2^k个值。显然，其中一个值表示数据是正确的，而剩下的2^k –1个值意味着数据中存在错误，如果能够满足： 2^k–1&gt;=m + k (m + k为编码后的总长度)，在理论上k个校验码就可以判断是哪一位(包括信息码和校验码)出现问题。</p>
 <p>需要注意的是：数据有m位，较验码有k位，合起来也是就信息码，共有m+k位，并且只能有1位在传输中出错，那么这个m+k位的信息码出错的可能性就有m+k种（第1位出错，第2位出错，第3位出错，…第m位出错…第m+k位出错）。较验码有k位，那么这k位较验码有2^k个组合（0000…-1111…），这2^k个组合对应着m+k种出错和1种不出错，所以k应该满足2^k-1&gt;m+k，只有这样才能让k位较验码来校验这m+k位数据是否会出错。</p>
-<p>更详细的介绍来看这里：<a href="https://docs.google.com/View?id=dhjhtxtq_1f8nkhbdh" target="_blank" rel="external">https://docs.google.com/View?id=dhjhtxtq_1f8nkhbdh</a></p>
+<p>更详细的介绍来看这里：<a href="https://docs.google.com/View?id=dhjhtxtq_1f8nkhbdh" target="_blank" rel="noopener">https://docs.google.com/View?id=dhjhtxtq_1f8nkhbdh</a></p>
 
   </div>
 
@@ -89,10 +89,10 @@
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2010/12/16/usage-of-assert-lib/" title="Next Post: C/C++中assert的用法"> &laquo; C/C++中assert的用法</a>
+          <a class="basic-alignment left" href="/2010/12/28/suimozongjie-2010/" title="Next Post: 岁末总结2010"> &laquo; 岁末总结2010</a>
         
         
-          <a class="basic-alignment right" href="/2010/12/28/suimozongjie-2010/" title="Next Post: 岁末总结2010">岁末总结2010 &raquo;</a>
+          <a class="basic-alignment right" href="/2010/12/16/usage-of-assert-lib/" title="Next Post: C/C++中assert的用法">C/C++中assert的用法 &raquo;</a>
         
       </p>
     </footer>
@@ -106,6 +106,10 @@
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -137,10 +141,6 @@
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -181,7 +181,7 @@
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 

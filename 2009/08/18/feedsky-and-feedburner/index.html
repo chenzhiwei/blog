@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+  <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>博客feed在feedsky和feedburner之间自由切换 - 陈志伟博客</title>
   <meta name="theme-color" content="#333333">
-  <meta name="author" content="">
-  <meta name="description" content="">
+  <meta name="author" content>
+  <meta name="description" content>
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
     <p>这几天来，我一直在研究博客feed的发布问题，到底应该让用户使用哪个地址来阅读博客feed。很多人都选择使用博客子域名来作为feed的发布地址，这样的话就不怕博客来回搬家了，尤其是像我这样的穷学生用的都是免费博客，所以很有可能会博客搬家，这样的话选择一家优秀的feed托管商是非常重要的。国内的feed托管商也就是feedsky最牛了，支持免费绑定子域名，客服的服务态度也很好，我之前给他们客服发了几封邮件，都是很快就得到了回复，很喜欢feedsky的客服。</p>
 <a id="more"></a>
 <p>最近我也看了很多关于feed的文章，还有关于 feedsky 与 feedburner 以及将feed放在自己的子域名下的好处，等等。通过这几天的观察，我发现越来越多的博主从feedsky转向了feedburner，现在feedsky 的用户N多，而feedsky又是一个小公司，服务器受不了这么多feed的压力，所以有时会出问题。我刚才在博客上写了一篇文章，发现不到半小时就被 feedburner 给收录了，而直到现在还不见feedsky有那篇文章的影子，看来是时候换博客的feed了。</p>
-<p>虽然 feedsky 与 feedburner 都支持域名绑定，可我发现 feedsky 与 feedburner 的域名绑定方式是不一样的。feedsky是直接将一个feed绑定在一个子域名下，而feedburner是将一个feed放在绑定域名的子目录下。如：我的feedsky的feed地址是：<a href="http://feed.feedsky.com/chenzhiwei" target="_blank" rel="external">http://feed.feedsky.com/chenzhiwei</a> 我可以绑定feed.chenzhiwei.cn 到该feed上；而feedburner是这样的：我的feedburner的feed地址是：<a href="http://feeds.feedburner.com/chenzhiwei" target="_blank" rel="external">http://feeds.feedburner.com/chenzhiwei</a> 我如果将feeds.chenzhiwei.cn绑定在feedburner帐户上的话，那么我的feedburner地址是 <a href="http://feeds.chenzhiwei.cn/chenzhiwei" target="_blank" rel="external">http://feeds.chenzhiwei.cn/chenzhiwei</a> ，这一点feedburner让我很不爽，希望feedburner也能像feedsky那样，用户可以选择自己的一个feed直接绑定在子域名下，这样就完美了，我们在转移feed的时候也很方便了，如果feedburner被墙，我们可以把域名再重新绑定在feedsky上面。</p>
+<p>虽然 feedsky 与 feedburner 都支持域名绑定，可我发现 feedsky 与 feedburner 的域名绑定方式是不一样的。feedsky是直接将一个feed绑定在一个子域名下，而feedburner是将一个feed放在绑定域名的子目录下。如：我的feedsky的feed地址是：<a href="http://feed.feedsky.com/chenzhiwei" target="_blank" rel="noopener">http://feed.feedsky.com/chenzhiwei</a> 我可以绑定feed.chenzhiwei.cn 到该feed上；而feedburner是这样的：我的feedburner的feed地址是：<a href="http://feeds.feedburner.com/chenzhiwei" target="_blank" rel="noopener">http://feeds.feedburner.com/chenzhiwei</a> 我如果将feeds.chenzhiwei.cn绑定在feedburner帐户上的话，那么我的feedburner地址是 <a href="http://feeds.chenzhiwei.cn/chenzhiwei" target="_blank" rel="noopener">http://feeds.chenzhiwei.cn/chenzhiwei</a> ，这一点feedburner让我很不爽，希望feedburner也能像feedsky那样，用户可以选择自己的一个feed直接绑定在子域名下，这样就完美了，我们在转移feed的时候也很方便了，如果feedburner被墙，我们可以把域名再重新绑定在feedsky上面。</p>
 <p>我在月光博客里看到了一个方法，可以在feedsky与feedburner之间来回切换，就是将自己的子域名绑定在空间的一个子目录上，然后在该目录下创建一个默认首页文件(PHP空间一般默认首页为index.php)，放上以下代码</p>
 <pre><code>&lt;?php 
 header(”Location: http://feeds.feedburner.com/chenzhiwei”); /* 重定向浏览器 */
@@ -85,7 +85,7 @@ String newLocn = &quot;http://feeds.feedburner.com/chenzhiwei&quot;;
 response.setHeader(&quot;Location&quot;,newLocn);
 %&gt;
 </code></pre><p>上传项目到GAE，这样一切就搞定了，如果哪天feedburner被封了，你可以再将域名转向feedsky，这样就可以实现feedsky与feedburner之间自由切换了，用户也不会感觉到有什么不正常的。当然，如果feedsky的服务超过feedburner的话，我还会再次选择feedsky的。这不是一个完美的方法，希望feedburner能让用户自己选择一个feed放在子域名下，而不是子域名的目录下。还有一点，就是该方法其实是一个网址跳转，当你从浏览器里打开feed.chenzhiwei.cn时你会发现，该子域名会自动跳转到我的feedburner。</p>
-<p>这是本博客的 feedburner:  <a href="http://feed.chenzhiwei.cn" target="_blank" rel="external">http://feed.chenzhiwei.cn</a> 欢迎订阅本博客。</p>
+<p>这是本博客的 feedburner:  <a href="http://feed.chenzhiwei.cn" target="_blank" rel="noopener">http://feed.chenzhiwei.cn</a> 欢迎订阅本博客。</p>
 
   </div>
 
@@ -99,10 +99,10 @@ response.setHeader(&quot;Location&quot;,newLocn);
       <div class="sharing"></div>
       <p class="meta">
         
-          <a class="basic-alignment left" href="/2009/08/17/new-things/" title="Next Post: 我这几天的新发现"> &laquo; 我这几天的新发现</a>
+          <a class="basic-alignment left" href="/2009/08/20/talk-about-feed-again/" title="Next Post: 再来谈博客feed"> &laquo; 再来谈博客feed</a>
         
         
-          <a class="basic-alignment right" href="/2009/08/20/talk-about-feed-again/" title="Next Post: 再来谈博客feed">再来谈博客feed &raquo;</a>
+          <a class="basic-alignment right" href="/2009/08/17/new-things/" title="Next Post: 我这几天的新发现">我这几天的新发现 &raquo;</a>
         
       </p>
     </footer>
@@ -116,6 +116,10 @@ response.setHeader(&quot;Location&quot;,newLocn);
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      
+        <li class="post">
+          <a href="/2019/07/07/archive-blog/">归档这个博客</a>
+        </li>
       
         <li class="post">
           <a href="/2016/08/13/how-to-happily-use-android-in-mainland-china/">在国内愉快地使用 Android</a>
@@ -147,10 +151,6 @@ response.setHeader(&quot;Location&quot;,newLocn);
       
         <li class="post">
           <a href="/2015/09/20/addict-to-watching-tv-series/">看电视剧上瘾</a>
-        </li>
-      
-        <li class="post">
-          <a href="/2015/09/01/forward-proxy-and-reverse-proxy/">正向代理和反向代理的区别</a>
         </li>
       
     </ul>
@@ -191,7 +191,7 @@ response.setHeader(&quot;Location&quot;,newLocn);
 
     <footer role="contentinfo">
   <p>
-    &copy; 2017 BLOG.CHENZHIWEI.CN
+    &copy; 2019 BLOG.CHENZHIWEI.CN
   </p>
 </footer>
 
